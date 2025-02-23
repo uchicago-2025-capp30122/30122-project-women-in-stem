@@ -1,6 +1,10 @@
 # U.S. Maternal Mortality
 
-### Author: Elizabeth Ronan, Dorothy Wongkarnta, Madelin De Jesus Martinez, Alexandrea Harriott
+### Author: 
+    [Elizabeth Ronan]()
+    [Dorothy Wongkarnta](https://github.com/Donlapun)
+    Madelin De Jesus Martinez
+    Alexandrea Harriott
 
 # Summary
 
