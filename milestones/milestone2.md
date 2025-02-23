@@ -12,7 +12,7 @@ There are 3 data sources that we will working with for this project, where each 
 
 ### Data Source #1 : [Maternal Mortality Data](https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care) 
 - This data source has the [CDC wonder data](https://wonder.cdc.gov/) as a foundation.
-- This data is from a webpage, but there is bulk data availbale and ready for download.
+- This data is from a webpage, but there is bulk data available and ready for download.
 - From this data source, we aim to use the summary statistics provided by the second green map. This data lives in a CSV file, composed of 51 rows, representing all 50 states and the District of Columbia, and 5 columns. 
 - We plan to use the column labelled as "0–18.6" which refers to the maternal mortality rates per 100,000 live births.
 
