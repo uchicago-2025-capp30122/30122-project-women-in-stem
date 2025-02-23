@@ -4,8 +4,12 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
+dependencies = [    "pandas>=2.2.3",
+    "pathlib>=1.0.1",
+    "rich>=13.9.4",
+    "statsmodels>=0.14.4",
     "plotly-express>=0.4.1",
     "plotly>=6.0.0",
     "pyshp>=2.3.1",
+
 ]
