@@ -6,6 +6,8 @@ import pathlib
 import httpx
 import lxml.html
 
+BASE_DIR = pathlib.Path(__file__).parent.parent
+
 
 # Data Source #1 : Maternal Mortality Data
 # https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care
@@ -56,7 +58,7 @@ for state_info in rawdata_list[0]:
 
 field_names = ['state', 'deaths', 'lower', 'upper', 'lat_long', 'lat', 'long']
 
-with open('data/scrape_data/deaths.csv', 'w') as file: 
+with open(BASE_DIR / '../data/scrape_data/deaths.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = field_names) 
     writer.writeheader()
     writer.writerows(state_data)

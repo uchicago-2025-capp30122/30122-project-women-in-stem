@@ -6,6 +6,8 @@ import pathlib
 import httpx
 import lxml.html
 
+BASE_DIR = pathlib.Path(__file__).parent.parent
+
 # Data Source #2: Women's Demographics
 # https://www.kff.org/interactive/womens-health-profiles/alabama/demographics/
 
@@ -51,7 +53,7 @@ for state_info in race_dict['data'][2:]:
 
 race_field_names = ['state', 'total', 'white', 'black', 'hispanic', 'asian', 'nhopi', 'aian', 'other']
 
-with open('data/scrape_data/race.csv', 'w') as file: 
+with open(BASE_DIR / '../data/scrape_data/race.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = race_field_names) 
     writer.writeheader()
     writer.writerows(race_data)
@@ -66,7 +68,7 @@ for state_info in age_dict['data'][2:]:
 
 age_field_names = ['state', 'total', 'age19_25', 'age26_34', 'age35_54', 'age55_64']
 
-with open('data/scrape_data/age.csv', 'w') as file: 
+with open(BASE_DIR / '../data/scrape_data/age.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = age_field_names) 
     writer.writeheader()
     writer.writerows(age_data)
@@ -81,7 +83,7 @@ for state_info in fpl_dict['data'][2:]:
 
 poverty_field_names = ['state', 'total', 'fplless_100', 'fpl100_199', 'fpl200_399', 'fplmore_400']
 
-with open('data/scrape_data/poverty.csv', 'w') as file: 
+with open(BASE_DIR / '../data/scrape_data/poverty.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = poverty_field_names) 
     writer.writeheader()
     writer.writerows(fpl_data)
@@ -96,7 +98,7 @@ for state_info in earnings_dict['data'][2:]:
 
 earnings_field_names = ['state', 'women_weekly', 'men_weekly', 'ratio']
 
-with open('data/scrape_data/earnings.csv', 'w') as file: 
+with open(BASE_DIR / '../data/scrape_data/earnings.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = earnings_field_names) 
     writer.writeheader()
     writer.writerows(earnings_data)
