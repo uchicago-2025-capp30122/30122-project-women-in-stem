@@ -18,7 +18,7 @@ def get_data():
     Returns: 
         mortality_data (DataFrame): the entire cleaned data
     """
-    mortality_data = pd.read_csv(BASE_DIR/"../data/merged.csv")
+    mortality_data = pd.read_csv(BASE_DIR/"../data/merged_data.csv")
 
     return mortality_data
 
