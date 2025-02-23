@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-HLTHSYS_CSV_COLUMNS = ("state", "deaths_per_100k", "unknown")
+HLTHSYS_CSV_COLUMNS = ("state", "performance_category", "unknown")
 MORTRATE_CSV_COLUMNS = ("state", "mortality_rate", "unknown")
 
 """
@@ -37,3 +37,25 @@ with open(mrt_path, 'w', newline='') as csvfile:
 """
 Cleaning the health systems performance csv
 """
+hlthsys_path = Path("data/health system performance for women.csv")
+cleaned_row = []
+
+with open(hlthsys_path, 'r') as csvfile: 
+    reader = csv.reader(csvfile)
+    
+    for row in reader:
+        state = row[0].lower().strip()
+        category = row[2].lower().strip().replace('–', '-')  # replaces en-dash with hyphen
+        unknown = row[3].strip()
+
+        cleaned_row.append({
+            "state": state,
+            "performance_category": category,
+            "unknown": unknown
+        })
+
+# Write the cleaned data
+with open(hlthsys_path, 'w', newline='') as csvfile: 
+    writer = csv.DictWriter(csvfile, fieldnames=HLTHSYS_CSV_COLUMNS)
+    writer.writeheader()
+    writer.writerows(cleaned_row)
