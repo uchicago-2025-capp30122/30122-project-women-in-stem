@@ -10,18 +10,15 @@ from rich.console import Console
 
 BASE_DIR = pathlib.Path(__file__).parent.parent
 
-def get_data(filename):
+def get_data():
     """
     Retrieved the cleaned data for crearing visualization and randomly split them 
     into training and testing data
 
-    Paremmters:
-        filename: the name of the data file
-
     Returns: 
         mortality_data (DataFrame): the entire cleaned data
     """
-    mortality_data = pd.read_csv(BASE_DIR/filename)
+    mortality_data = pd.read_csv(BASE_DIR/"../data/merged.csv")
 
     return mortality_data
 
