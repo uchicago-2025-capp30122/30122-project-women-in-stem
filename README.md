@@ -1,6 +1,6 @@
 # U.S. Maternal Mortality
 
-#  Author: Elizabeth Ronan, Dorothy Wongkarnta, Madelin De Jesus Martinez, Alexandrea Harriott
+### Author: Elizabeth Ronan, Dorothy Wongkarnta, Madelin De Jesus Martinez, Alexandrea Harriott
 
 # Summary
 
@@ -27,7 +27,7 @@ Additionally, we plan to create a background regression model where we see the e
 `uv run python -m mortality map` - to run the visualization map
 `uv run python -m mortality prediction` - to run the visualization map
 
-Please follow the prompts right oncs the program starts
+Please follow the prompts right once the program starts
 
 # Data Source
 [2024 State Scorecard on Women’s Health and Reproductive Care](https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care)
