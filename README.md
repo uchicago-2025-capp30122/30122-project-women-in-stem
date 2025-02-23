@@ -16,28 +16,34 @@ We want to explore data at a state level to analyze maternal mortality across th
 
 Additionally, we plan to create a background regression model where we see the effect of interested characteristics on maternal mortality rate. The user wil be able to put their own demographics into a python program, and it will show the predicted maternal mortality rate using the regression model output. This can be helpful for the user to consider their current situation in their state or another state with varying access levels to abortion.
 
-# How to run the Appplication
+# How to Run the Appplication
 
 1. Clone the repository using this command: 
 
 `git clone git@github.com:uchicago-2025-capp30122/30122-project-women-in-stem.git`
 
-2. Run the scrapers to get the data : 
+2. Downlaod necessary pacakges for running the program:
+
+`uv sync`
+
+3. Run the scrapers to get the data (optional): 
 
 `uv run python -m mortality.scrapers`
 
-3. To execute the program choose either of the followings:
+4. To execute the program choose one of the following:
 
 `uv run python -m mortality map` - to run the visualization map
-`uv run python -m mortality prediction` - to run the visualization map
 
-Please follow the prompts right once the program starts
+`uv run python -m mortality prediction` - to run the predictive model
+
+Please follow the prompts once the program starts.
 
 # Data Source
 [2024 State Scorecard on Women’s Health and Reproductive Care](https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care)
 
 [KFF State Profiles for Women’s Health](https://www.kff.org/interactive/womens-health-profiles/alaska/demographics/)
 
+For both of these sources, the necessary data has been loaded into the program for you already. There are no extra steps necessary in order to use the program.
 
 
 
