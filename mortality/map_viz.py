@@ -9,17 +9,20 @@ def load_data():
     Inputs: none
     Outputs: Pandas dataframe
     """
-    file = Path(__file__).parent.parent.joinpath("data/example_csv_map.csv")
+    file = Path(__file__).parent.parent.joinpath("data/scrape_data/deaths.csv")
 
     df = pd.read_csv(file)
-    df.columns = ['state', ]
+    df = df[df['state'] != 'district of columbia']
 
     return df
 
 def map_mortalities():
     df = load_data()
-    print(df)
-    fig = px.choropleth(locations=["CA", "TX", "NY"], locationmode="USA-states", color=[1,2,3], scope="usa")
+    fig = px.choropleth(locations= 'abbrev', locationmode="USA-states", scope="usa",
+                        color = 'lower', hover_data= 'state', 
+                        color_continuous_scale=px.colors.sequential.Blues,
+                        title='Deaths per 100,000 female population by state',
+                        data_frame=df)
     fig.show()
     
 map_mortalities()
