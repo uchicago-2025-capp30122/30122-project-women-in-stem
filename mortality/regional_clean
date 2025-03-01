@@ -1,0 +1,43 @@
+import csv
+from pathlib import Path
+
+#Cleaning Regional data
+region_path_open = Path("data/downloaded_data/Regional_excel.csv")
+region_path_write = Path(__file__).parent.parent.joinpath("data/clean_regional.csv")
+
+
+with open(region_path_open, 'r') as file:
+    coontent = csv.DictReader(file) # Into dictionary 
+
+with open(region_path_write, 'w') as csv_file:
+    fieldnames = ('census_region', 'year','single_race', 'education', 'five_year_age','deaths','population','% _of_total_deaths')
+    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+    writer.writeheader()
+    
+    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+    for row in writer:
+        #census_region = row[2].lower().strip()
+        print(row)
+        # for row in reader:
+#         state = row[0].lower().strip()
+#         mortality_rate = row[2].strip()
+
+#         if "data not available" in mortality_rate.lower():
+#             mortality_rate = None
+#         else:
+#             mortality_rate = mortality_rate.replace('–', '-')  # replaces en-dash with hyphen
+        
+#         cleaned_data.append({
+#             "state": state,
+#             "mortality_rate": mortality_rate,
+#             "unknown": row[3]  # keeping the unknown column as is until we figure out what it stands for 
+#         })
+        #row = row.replace('""""', '')  #Not working 
+        #row = row.replace(',', '_')  # replace commas with underscores within the line
+        
+        #split by tab or space depending on the original format
+        # columns = row.strip().lower()  # assuming columns are tab-separated
+        
+        # # write the cleaned line to the CSV
+        # writer.writerow(columns)
+        # print(f"Row {i}: {row.strip()}")
