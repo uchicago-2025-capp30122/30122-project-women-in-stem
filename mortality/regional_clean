@@ -17,7 +17,7 @@ with open(region_path_write, 'w', newline='', encoding='utf-8') as csv_file:
     
     for row in content:
         cleaned_row = {
-            'Census Region': row['Census Region'].strip().lower(),
+            'Census Region': row['Census Region'].strip().lower()[17:],
             'Year': row['Year'].strip().lower(),
             'Single Race 6': row['Single Race 6'].strip().lower(),
             'Education': row['Education'].strip().lower() if row['Education'] != 'Not Available' else 'unknown',
@@ -26,26 +26,4 @@ with open(region_path_write, 'w', newline='', encoding='utf-8') as csv_file:
             '% of Total Deaths': row['% of Total Deaths'].strip().lower()
         }
         writer.writerow(cleaned_row)
-        # for row in reader:
-#         state = row[0].lower().strip()
-#         mortality_rate = row[2].strip()
-
-#         if "data not available" in mortality_rate.lower():
-#             mortality_rate = None
-#         else:
-#             mortality_rate = mortality_rate.replace('–', '-')  # replaces en-dash with hyphen
         
-#         cleaned_data.append({
-#             "state": state,
-#             "mortality_rate": mortality_rate,
-#             "unknown": row[3]  # keeping the unknown column as is until we figure out what it stands for 
-#         })
-        #row = row.replace('""""', '')  #Not working 
-        #row = row.replace(',', '_')  # replace commas with underscores within the line
-        
-        #split by tab or space depending on the original format
-        # columns = row.strip().lower()  # assuming columns are tab-separated
-        
-        # # write the cleaned line to the CSV
-        # writer.writerow(columns)
-        # print(f"Row {i}: {row.strip()}")
