@@ -3,13 +3,17 @@ This script is designed to create linear regression model that help user
 estimate/predict the maternal mortality rate given different factors/characterisitcs
 """
 
-import pathlib
+from pathlib import Path
 import pandas as pd
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
+import numpy as np
+
 from rich.console import Console
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
 
-BASE_DIR = pathlib.Path(__file__).parent.parent
-
+INDEPENDENT_VAR =  ['region', 'race','education', 'ten_year_age_groups']
 
 def get_data():
     """
@@ -19,16 +23,17 @@ def get_data():
     Returns:
         mortality_data (DataFrame): the entire cleaned data
     """
-    # this is an assumption that the cleaned data is in data folder and is called merged_data.csv
-    mortality_data = pd.read_csv(BASE_DIR / "../data/merged_data.csv")
+    file = Path(__file__).parent.parent.joinpath("data/clean_reg_age_educ.csv")
+    mortality_data = pd.read_csv(file)
+    mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
+    train_data, test_data = train_test_split(mortality_data, test_size = 0.2, random_state = 100)
 
-    return mortality_data
+    return train_data, test_data
 
 
-def level_elimination(columns):
+def interaction_level(indep_list):
     """
-    Compute each level of backward elimination; that is removing one variable
-    from the model at a time
+    Compute all combinations of the independent variables interaction
 
     Parameters:
         columns (list): list containing all independent/column variable names
@@ -38,16 +43,36 @@ def level_elimination(columns):
         variables
     """
     rv = []
-    for col in columns:
-        p_minus_x = [v for v in col if v != col]
-        rv.append(p_minus_x)
+    for i in range(len(indep_list)):
+        for j in range(i+1, len(indep_list)):
+                rv.append([indep_list[i], indep_list[j]])
     return rv
 
+def main_model(train_data, test_data):
+    """
+    Create the optimal linear regression model with all data available
 
-def one_level_optimal_model(mortality_data, indep_list):
+    Parameters:
+        mortality_data (Dataframe): Dataframe containing all variables data
+
+    Returns:
+        predict_model: linear regression of all variables maternal mortality
+    """
+
+    equation_str = "percent_total_deaths ~ " + "+".join(INDEPENDENT_VAR)
+    train_model = smf.ols(equation_str, data=train_data).fit()
+    maternal_predicted = train_model.predict(exog = test_data)
+    test_r2 = r2_score(test_data['percent_total_deaths'], maternal_predicted)
+
+    print(train_model.summary())
+    print('r^2',test_r2)
+    
+    return equation_str, train_model, test_r2
+
+def optimal_model(train_data, test_data):
     """
     Find the optimal linear regression model on specific elimination level which
-    is the model with the lowest AIC score
+    has the highest R^2 on the testing data
 
     Parameters:
         mortality_data (Dataframe): Dataframe containing all data
@@ -57,62 +82,30 @@ def one_level_optimal_model(mortality_data, indep_list):
         indep_list (list): list containing different combination of independent
         variables for optimal model
     """
-
     # create the full linear regression model
-    equation_str = "mortality_rate ~ " + "+".join(indep_list)
-    current_model = smf.ols(equation_str, data=mortality_data).fit()
-    lowest_aic = current_model.aic
-    new_indep_list = indep_list
+    main_equation, main_model, test_r2 = main_model(train_data, test_data)
+    current_model = main_model
+    best_r2 = test_r2
+    best_equation = main_equation
+    best_model = current_model
+    interaction_list = interaction_level(INDEPENDENT_VAR)
 
-    elim_list = level_elimination(indep_list)
+    # finding the highest test r2 score
+    for each_e in interaction_list:
+        interaction = f'C({each_e[0]}):C({each_e[1]})'
+        new_equation = main_equation + "+" + interaction
+        new_model = smf.ols(new_equation, data=train_data).fit()
+        new_predicted = new_model.predict(exog = test_data)
+        new_r2 = r2_score(test_data['percent_total_deaths'], new_predicted)
 
-    # finding the lowest aic score
-    for each_e in elim_list:
-        new_equation = "mortality_rate ~ " + "+".join(each_e)
-        new_model = smf.ols(new_equation, data=mortality_data).fit()
-        if new_model.aic < lowest_aic:
-            lowest_aic = new_model.aic
-            new_indep_list = each_e
-
-    return new_indep_list
-
-
-def multi_level_optimal_model(mortality_data, current_indep_list, old_indep_list=[]):
-    """
-    Find the optimal model through the whole process of backward elimination.
-    Stop finding the model when the previous level of elimination is the same as
-    the current level of elimination. In other words, no new model that better
-    fit the data
-
-    Returns:
-        list containing different combination of independent variables for
-        multilevel optimal model
-
-    """
-    if current_indep_list == old_indep_list:
-        return current_indep_list
-
-    newer_list = one_level_optimal_model(mortality_data, indep_list=current_indep_list)
-
-    return multi_level_optimal_model(
-        mortality_data, newer_list, old_indep_list=current_indep_list
-    )
-
-
-def optimal_predict_model(mortality_data):
-    """
-    Create linear regression model of maternal mortalitis on the factors of interests.
-
-    Returns:
-        predict_model: linear regression of maternal mortality
-    """
-    indep_list = list(filter(lambda x: x != "mortality_rate", mortality_data.columns))
-    dependent_var = multi_level_optimal_model(mortality_data, indep_list)
-    equation_str = "mortality_rate ~ " + "+".join(dependent_var)
-    predict_model = smf.ols(equation_str, data=mortality_data).fit()
-
-    return predict_model
-
+        if best_r2 < new_r2:
+            # print('yes')
+            best_r2 = new_r2
+            # new_indep_list = each_e
+            best_equation = new_equation
+            best_model = new_model
+    # new_indep_list = INDEPENDENT_VAR + [new_indep_list]
+    return best_equation, best_model
 
 def user_prediction():
     """
@@ -124,25 +117,25 @@ def user_prediction():
     Returns:
         Maternal mortality rate (float)
     """
-    mortality_data = get_data()
-    optimal_model = optimal_predict_model(mortality_data)
+    train_data, test_data = get_data()
+    optimal_equation, opt_model = optimal_model(train_data, test_data)
 
-    # Generate the equation model for view
-    console = Console()
-    front_equation = "mortality_rate = "
-    coeffs = optimal_model.params
-    coeff_pairs = []
-
-    for variable, coef in coeffs.items():
-        coef = round(coef, 5)
-        if variable == "Intercept":
-            coeff_pairs.append(str(coef))
-        else:
-            coeff_pairs.append(variable + "*" + str(coef))
-
-    back_equation = "+".join(coeff_pairs)
-    complete_equation = front_equation + back_equation
-    console.print("predictive model:", complete_equation)
+    return
+    # console.print("predictive model:", complete_equation)
 
     # Generate the maternality mortality rate based on user input
     # IN PROGRESS
+
+
+
+# train, test = get_data()
+# main_model(train, test)
+# print("------")
+# independent_l = interaction_level(INDEPENDENT_VAR)
+
+# print("independent_l", independent_l)
+# best_equation, best_model = optimal_model(train, test,INDEPENDENT_VAR)
+# print("best_equation", best_equation)
+# print("best_model", best_model)
+# print("new_indep_list", new_indep_list)
+user_prediction()
