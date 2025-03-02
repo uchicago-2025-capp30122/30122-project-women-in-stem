@@ -2,13 +2,16 @@ import csv
 from pathlib import Path
 
 #Cleaning Regional data
-region_path_open = Path("data/downloaded_data/Regional_excel.csv")
-region_path_write = Path(__file__).parent.parent.joinpath("data/clean_regional.csv")
-fieldnames = ['Census Region', 'Year', 'Single Race 6', 'Education', 'Five-Year Age Groups', 'Deaths', '% of Total Deaths']
+region_path_open = Path("data/downloaded_data/region_age_educ_race.csv")
+region_path_write = Path(__file__).parent.parent.joinpath("data/clean_reg_age_educ.csv")
+fieldnames = ['region', 'race', 'education', 'ten_year_age_groups', 'deaths', 'percent_total_deaths']
+
+
+
 
 # Read the CSV file
 with open(region_path_open, 'r', encoding='utf-8') as file:
-    content = list(csv.DictReader(file))  # Store data in a list
+    content = list(csv.DictReader(file))
 
 # Write the cleaned data
 with open(region_path_write, 'w', newline='', encoding='utf-8') as csv_file:
@@ -17,13 +20,12 @@ with open(region_path_write, 'w', newline='', encoding='utf-8') as csv_file:
     
     for row in content:
         cleaned_row = {
-            'Census Region': row['Census Region'].strip().lower()[17:],
-            'Year': row['Year'].strip().lower(),
-            'Single Race 6': row['Single Race 6'].strip().lower(),
-            'Education': row['Education'].strip().lower() if row['Education'] != 'Not Available' else 'unknown',
-            'Five-Year Age Groups': row['Five-Year Age Groups'].strip().lower(),
-            'Deaths': row['Deaths'].strip().lower(),
-            '% of Total Deaths': row['% of Total Deaths'].strip().lower()
+            'region': row['Census Region'].strip().lower()[17:],
+            'race': row['Single Race 6'].strip().lower(),
+            'education': row['Education'].strip().lower() if row['Education'] != 'Not Available' else 'unknown',
+            'ten_year_age_groups': row['Ten-Year Age Groups Code'].strip().lower(),
+            'deaths': row['Deaths'].strip().lower(),
+            'percent_total_deaths': float(row['% of Total Deaths'].strip().lower()[:3])
         }
         writer.writerow(cleaned_row)
         
