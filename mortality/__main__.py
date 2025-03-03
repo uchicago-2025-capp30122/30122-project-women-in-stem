@@ -8,8 +8,8 @@ def main():
     elif sys.argv[1] == "prediction":
         region = input("Enter Your Region: ")
         race = input("Enter Your Race: ")
-        education = input("Enter Your Region: ")
-        age = input("Enter Your Region: ")
+        education = input("Enter Your Education: ")
+        age = input("Enter Your Age: ")
         user_prediction(region, race, education, age)
         # state = input("Enter State (if no preference please press Enter): ")
 
