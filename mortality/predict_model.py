@@ -13,7 +13,7 @@ from rich.console import Console
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-INDEPENDENT_VAR =  ['region', 'race','education', 'ten_year_age_groups']
+INDEPENDENT_VAR = ['region', 'race','education', 'ten_year_age_groups']
 
 def get_data():
     """
@@ -48,7 +48,7 @@ def interaction_level(indep_list):
                 rv.append([indep_list[i], indep_list[j]])
     return rv
 
-def main_model(train_data, test_data):
+def full_model(train_data, test_data):
     """
     Create the optimal linear regression model with all data available
 
@@ -83,7 +83,7 @@ def optimal_model(train_data, test_data):
         variables for optimal model
     """
     # create the full linear regression model
-    main_equation, main_model, test_r2 = main_model(train_data, test_data)
+    main_equation, main_model, test_r2 = full_model(train_data, test_data)
     current_model = main_model
     best_r2 = test_r2
     best_equation = main_equation
@@ -107,20 +107,34 @@ def optimal_model(train_data, test_data):
     # new_indep_list = INDEPENDENT_VAR + [new_indep_list]
     return best_equation, best_model
 
-def user_prediction():
+def user_prediction(region:str, race:str, education:str, age:str):
     """
     Generate the predicted maternal mortality rate from the linear regression
     model based on user input as well as shown model equation
 
     Parameters:
-        User Inputs (IN PROGRESS)
+        Region of User Input (str)
+        Race of User Input (str)
+        Education of User Input (str)
+        Age of User Input (str)
+
     Returns:
         Maternal mortality rate (float)
     """
     train_data, test_data = get_data()
     optimal_equation, opt_model = optimal_model(train_data, test_data)
+    console = Console()
 
-    return
+
+    inputs = pd.DataFrame({
+        INDEPENDENT_VAR[0] : [region],
+        INDEPENDENT_VAR[1] : [race],
+        INDEPENDENT_VAR[2] : [education],
+        INDEPENDENT_VAR[3] : [age]
+    })
+    
+    user_mortality_r = opt_model.predict(inputs)
+    console.print(user_mortality_r)
     # console.print("predictive model:", complete_equation)
 
     # Generate the maternality mortality rate based on user input
@@ -138,4 +152,4 @@ def user_prediction():
 # print("best_equation", best_equation)
 # print("best_model", best_model)
 # print("new_indep_list", new_indep_list)
-user_prediction()
+# user_prediction()
