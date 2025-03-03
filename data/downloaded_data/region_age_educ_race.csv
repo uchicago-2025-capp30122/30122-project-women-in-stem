@@ -1,0 +1,121 @@
+﻿Notes,Census Region,Census Region Code,Education,Education Code,Single Race 6,Single Race 6 Code,Ten-Year Age Groups,Ten-Year Age Groups Code,Deaths,Population,Crude Rate,% of Total Deaths
+,Census Region 1: Northeast,CENS-R1,9th through 12th grade with no diploma,2,White,2106-3,25-34 years,25-34,12,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,9th through 12th grade with no diploma,2,White,2106-3,35-44 years,35-44,17,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,Black or African American,2054-5,15-24 years,15-24,17,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,Black or African American,2054-5,25-34 years,25-34,45,Not Applicable,Not Applicable,0.60%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,Black or African American,2054-5,35-44 years,35-44,32,Not Applicable,Not Applicable,0.40%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,White,2106-3,15-24 years,15-24,28,Not Applicable,Not Applicable,0.40%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,White,2106-3,25-34 years,25-34,56,Not Applicable,Not Applicable,0.80%
+,Census Region 1: Northeast,CENS-R1,High school graduate or GED completed,3,White,2106-3,35-44 years,35-44,48,Not Applicable,Not Applicable,0.70%
+,Census Region 1: Northeast,CENS-R1,"Some college credit, but not a degree.",4,Black or African American,2054-5,25-34 years,25-34,12,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,"Some college credit, but not a degree.",4,Black or African American,2054-5,35-44 years,35-44,14,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,"Some college credit, but not a degree.",4,White,2106-3,25-34 years,25-34,22,Not Applicable,Not Applicable,0.30%
+,Census Region 1: Northeast,CENS-R1,"Some college credit, but not a degree.",4,White,2106-3,35-44 years,35-44,15,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,"Associate degree (AA,AS)",5,Black or African American,2054-5,25-34 years,25-34,10,Not Applicable,Not Applicable,0.10%
+,Census Region 1: Northeast,CENS-R1,"Associate degree (AA,AS)",5,White,2106-3,25-34 years,25-34,12,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,"Associate degree (AA,AS)",5,White,2106-3,35-44 years,35-44,11,Not Applicable,Not Applicable,0.10%
+,Census Region 1: Northeast,CENS-R1,"Bachelor?s degree (BA, AB, BS)",6,Black or African American,2054-5,25-34 years,25-34,10,Not Applicable,Not Applicable,0.10%
+,Census Region 1: Northeast,CENS-R1,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,25-34 years,25-34,18,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,35-44 years,35-44,29,Not Applicable,Not Applicable,0.40%
+,Census Region 1: Northeast,CENS-R1,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,White,2106-3,35-44 years,35-44,15,Not Applicable,Not Applicable,0.20%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,Asian,A,25-34 years,25-34,10,Not Applicable,Not Applicable,0.10%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,Black or African American,2054-5,15-24 years,15-24,19,Not Applicable,Not Applicable,0.30%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,Black or African American,2054-5,25-34 years,25-34,73,Not Applicable,Not Applicable,1.00%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,Black or African American,2054-5,35-44 years,35-44,88,Not Applicable,Not Applicable,1.20%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,White,2106-3,15-24 years,15-24,37,Not Applicable,Not Applicable,0.50%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,White,2106-3,25-34 years,25-34,128,Not Applicable,Not Applicable,1.70%
+,Census Region 1: Northeast,CENS-R1,Not Available,10,White,2106-3,35-44 years,35-44,115,Not Applicable,Not Applicable,1.60%
+,Census Region 2: Midwest,CENS-R2,8th grade or less,1,White,2106-3,35-44 years,35-44,12,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,9th through 12th grade with no diploma,2,Black or African American,2054-5,25-34 years,25-34,17,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,9th through 12th grade with no diploma,2,White,2106-3,15-24 years,15-24,10,Not Applicable,Not Applicable,0.10%
+,Census Region 2: Midwest,CENS-R2,9th through 12th grade with no diploma,2,White,2106-3,25-34 years,25-34,22,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,9th through 12th grade with no diploma,2,White,2106-3,35-44 years,35-44,17,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,Black or African American,2054-5,15-24 years,15-24,14,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,Black or African American,2054-5,25-34 years,25-34,62,Not Applicable,Not Applicable,0.80%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,Black or African American,2054-5,35-44 years,35-44,26,Not Applicable,Not Applicable,0.40%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,White,2106-3,15-24 years,15-24,25,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,White,2106-3,25-34 years,25-34,86,Not Applicable,Not Applicable,1.20%
+,Census Region 2: Midwest,CENS-R2,High school graduate or GED completed,3,White,2106-3,35-44 years,35-44,74,Not Applicable,Not Applicable,1.00%
+,Census Region 2: Midwest,CENS-R2,"Some college credit, but not a degree.",4,Black or African American,2054-5,25-34 years,25-34,24,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,"Some college credit, but not a degree.",4,Black or African American,2054-5,35-44 years,35-44,17,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,"Some college credit, but not a degree.",4,White,2106-3,15-24 years,15-24,11,Not Applicable,Not Applicable,0.10%
+,Census Region 2: Midwest,CENS-R2,"Some college credit, but not a degree.",4,White,2106-3,25-34 years,25-34,50,Not Applicable,Not Applicable,0.70%
+,Census Region 2: Midwest,CENS-R2,"Some college credit, but not a degree.",4,White,2106-3,35-44 years,35-44,18,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,"Associate degree (AA,AS)",5,White,2106-3,25-34 years,25-34,20,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,"Associate degree (AA,AS)",5,White,2106-3,35-44 years,35-44,19,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,25-34 years,25-34,40,Not Applicable,Not Applicable,0.50%
+,Census Region 2: Midwest,CENS-R2,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,35-44 years,35-44,29,Not Applicable,Not Applicable,0.40%
+,Census Region 2: Midwest,CENS-R2,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,White,2106-3,35-44 years,35-44,14,Not Applicable,Not Applicable,0.20%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,Black or African American,2054-5,15-24 years,15-24,25,Not Applicable,Not Applicable,0.30%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,Black or African American,2054-5,25-34 years,25-34,80,Not Applicable,Not Applicable,1.10%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,Black or African American,2054-5,35-44 years,35-44,55,Not Applicable,Not Applicable,0.70%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,White,2106-3,15-24 years,15-24,64,Not Applicable,Not Applicable,0.90%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,White,2106-3,25-34 years,25-34,208,Not Applicable,Not Applicable,2.80%
+,Census Region 2: Midwest,CENS-R2,Not Available,10,White,2106-3,35-44 years,35-44,162,Not Applicable,Not Applicable,2.20%
+,Census Region 3: South,CENS-R3,8th grade or less,1,White,2106-3,25-34 years,25-34,16,Not Applicable,Not Applicable,0.20%
+,Census Region 3: South,CENS-R3,8th grade or less,1,White,2106-3,35-44 years,35-44,31,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,Black or African American,2054-5,15-24 years,15-24,31,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,Black or African American,2054-5,25-34 years,25-34,40,Not Applicable,Not Applicable,0.50%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,Black or African American,2054-5,35-44 years,35-44,31,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,White,2106-3,15-24 years,15-24,27,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,White,2106-3,25-34 years,25-34,62,Not Applicable,Not Applicable,0.80%
+,Census Region 3: South,CENS-R3,9th through 12th grade with no diploma,2,White,2106-3,35-44 years,35-44,54,Not Applicable,Not Applicable,0.70%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,Black or African American,2054-5,15-24 years,15-24,64,Not Applicable,Not Applicable,0.90%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,Black or African American,2054-5,25-34 years,25-34,169,Not Applicable,Not Applicable,2.30%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,Black or African American,2054-5,35-44 years,35-44,119,Not Applicable,Not Applicable,1.60%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,White,2106-3,15-24 years,15-24,75,Not Applicable,Not Applicable,1.00%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,White,2106-3,25-34 years,25-34,224,Not Applicable,Not Applicable,3.00%
+,Census Region 3: South,CENS-R3,High school graduate or GED completed,3,White,2106-3,35-44 years,35-44,157,Not Applicable,Not Applicable,2.10%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,Black or African American,2054-5,15-24 years,15-24,24,Not Applicable,Not Applicable,0.30%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,Black or African American,2054-5,25-34 years,25-34,82,Not Applicable,Not Applicable,1.10%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,Black or African American,2054-5,35-44 years,35-44,45,Not Applicable,Not Applicable,0.60%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,White,2106-3,15-24 years,15-24,14,Not Applicable,Not Applicable,0.20%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,White,2106-3,25-34 years,25-34,90,Not Applicable,Not Applicable,1.20%
+,Census Region 3: South,CENS-R3,"Some college credit, but not a degree.",4,White,2106-3,35-44 years,35-44,60,Not Applicable,Not Applicable,0.80%
+,Census Region 3: South,CENS-R3,"Associate degree (AA,AS)",5,Black or African American,2054-5,25-34 years,25-34,35,Not Applicable,Not Applicable,0.50%
+,Census Region 3: South,CENS-R3,"Associate degree (AA,AS)",5,Black or African American,2054-5,35-44 years,35-44,29,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,"Associate degree (AA,AS)",5,White,2106-3,15-24 years,15-24,11,Not Applicable,Not Applicable,0.10%
+,Census Region 3: South,CENS-R3,"Associate degree (AA,AS)",5,White,2106-3,25-34 years,25-34,50,Not Applicable,Not Applicable,0.70%
+,Census Region 3: South,CENS-R3,"Associate degree (AA,AS)",5,White,2106-3,35-44 years,35-44,40,Not Applicable,Not Applicable,0.50%
+,Census Region 3: South,CENS-R3,"Bachelor?s degree (BA, AB, BS)",6,Black or African American,2054-5,25-34 years,25-34,42,Not Applicable,Not Applicable,0.60%
+,Census Region 3: South,CENS-R3,"Bachelor?s degree (BA, AB, BS)",6,Black or African American,2054-5,35-44 years,35-44,36,Not Applicable,Not Applicable,0.50%
+,Census Region 3: South,CENS-R3,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,25-34 years,25-34,62,Not Applicable,Not Applicable,0.80%
+,Census Region 3: South,CENS-R3,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,35-44 years,35-44,58,Not Applicable,Not Applicable,0.80%
+,Census Region 3: South,CENS-R3,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,Black or African American,2054-5,25-34 years,25-34,14,Not Applicable,Not Applicable,0.20%
+,Census Region 3: South,CENS-R3,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,Black or African American,2054-5,35-44 years,35-44,22,Not Applicable,Not Applicable,0.30%
+,Census Region 3: South,CENS-R3,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,White,2106-3,25-34 years,25-34,31,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,"Master?s degree (MA, MS, MEng, MEd, MSW, MBA)",7,White,2106-3,35-44 years,35-44,24,Not Applicable,Not Applicable,0.30%
+,Census Region 3: South,CENS-R3,Not Available,10,Asian,A,25-34 years,25-34,14,Not Applicable,Not Applicable,0.20%
+,Census Region 3: South,CENS-R3,Not Available,10,Asian,A,35-44 years,35-44,29,Not Applicable,Not Applicable,0.40%
+,Census Region 3: South,CENS-R3,Not Available,10,Black or African American,2054-5,15-24 years,15-24,105,Not Applicable,Not Applicable,1.40%
+,Census Region 3: South,CENS-R3,Not Available,10,Black or African American,2054-5,25-34 years,25-34,319,Not Applicable,Not Applicable,4.30%
+,Census Region 3: South,CENS-R3,Not Available,10,Black or African American,2054-5,35-44 years,35-44,251,Not Applicable,Not Applicable,3.40%
+,Census Region 3: South,CENS-R3,Not Available,10,White,2106-3,15-24 years,15-24,139,Not Applicable,Not Applicable,1.90%
+,Census Region 3: South,CENS-R3,Not Available,10,White,2106-3,25-34 years,25-34,403,Not Applicable,Not Applicable,5.50%
+,Census Region 3: South,CENS-R3,Not Available,10,White,2106-3,35-44 years,35-44,310,Not Applicable,Not Applicable,4.20%
+,Census Region 3: South,CENS-R3,Not Available,10,White,2106-3,45-54 years,45-54,11,Not Applicable,Not Applicable,0.10%
+,Census Region 4: West,CENS-R4,9th through 12th grade with no diploma,2,White,2106-3,15-24 years,15-24,17,Not Applicable,Not Applicable,0.20%
+,Census Region 4: West,CENS-R4,9th through 12th grade with no diploma,2,White,2106-3,25-34 years,25-34,25,Not Applicable,Not Applicable,0.30%
+,Census Region 4: West,CENS-R4,9th through 12th grade with no diploma,2,White,2106-3,35-44 years,35-44,23,Not Applicable,Not Applicable,0.30%
+,Census Region 4: West,CENS-R4,High school graduate or GED completed,3,Black or African American,2054-5,25-34 years,25-34,12,Not Applicable,Not Applicable,0.20%
+,Census Region 4: West,CENS-R4,High school graduate or GED completed,3,White,2106-3,15-24 years,15-24,27,Not Applicable,Not Applicable,0.40%
+,Census Region 4: West,CENS-R4,High school graduate or GED completed,3,White,2106-3,25-34 years,25-34,75,Not Applicable,Not Applicable,1.00%
+,Census Region 4: West,CENS-R4,High school graduate or GED completed,3,White,2106-3,35-44 years,35-44,46,Not Applicable,Not Applicable,0.60%
+,Census Region 4: West,CENS-R4,"Some college credit, but not a degree.",4,Black or African American,2054-5,35-44 years,35-44,10,Not Applicable,Not Applicable,0.10%
+,Census Region 4: West,CENS-R4,"Some college credit, but not a degree.",4,White,2106-3,25-34 years,25-34,50,Not Applicable,Not Applicable,0.70%
+,Census Region 4: West,CENS-R4,"Some college credit, but not a degree.",4,White,2106-3,35-44 years,35-44,29,Not Applicable,Not Applicable,0.40%
+,Census Region 4: West,CENS-R4,"Associate degree (AA,AS)",5,White,2106-3,25-34 years,25-34,19,Not Applicable,Not Applicable,0.30%
+,Census Region 4: West,CENS-R4,"Associate degree (AA,AS)",5,White,2106-3,35-44 years,35-44,20,Not Applicable,Not Applicable,0.30%
+,Census Region 4: West,CENS-R4,"Bachelor?s degree (BA, AB, BS)",6,Asian,A,35-44 years,35-44,10,Not Applicable,Not Applicable,0.10%
+,Census Region 4: West,CENS-R4,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,25-34 years,25-34,32,Not Applicable,Not Applicable,0.40%
+,Census Region 4: West,CENS-R4,"Bachelor?s degree (BA, AB, BS)",6,White,2106-3,35-44 years,35-44,13,Not Applicable,Not Applicable,0.20%
+,Census Region 4: West,CENS-R4,Not Available,10,American Indian or Alaska Native,1002-5,25-34 years,25-34,23,Not Applicable,Not Applicable,0.30%
+,Census Region 4: West,CENS-R4,Not Available,10,Asian,A,25-34 years,25-34,18,Not Applicable,Not Applicable,0.20%
+,Census Region 4: West,CENS-R4,Not Available,10,Asian,A,35-44 years,35-44,27,Not Applicable,Not Applicable,0.40%
+,Census Region 4: West,CENS-R4,Not Available,10,Black or African American,2054-5,25-34 years,25-34,36,Not Applicable,Not Applicable,0.50%
+,Census Region 4: West,CENS-R4,Not Available,10,Black or African American,2054-5,35-44 years,35-44,28,Not Applicable,Not Applicable,0.40%
+,Census Region 4: West,CENS-R4,Not Available,10,White,2106-3,15-24 years,15-24,59,Not Applicable,Not Applicable,0.80%
+,Census Region 4: West,CENS-R4,Not Available,10,White,2106-3,25-34 years,25-34,187,Not Applicable,Not Applicable,2.50%
+,Census Region 4: West,CENS-R4,Not Available,10,White,2106-3,35-44 years,35-44,139,Not Applicable,Not Applicable,1.90%
+,Census Region 4: West,CENS-R4,Not Available,10,White,2106-3,45-54 years,45-54,10,Not Applicable,Not Applicable,0.10%
+,Census Region 4: West,CENS-R4,Not Available,10,More than one race,M,25-34 years,25-34,14,Not Applicable,Not Applicable,0.20%
