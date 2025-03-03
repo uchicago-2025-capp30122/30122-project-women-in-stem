@@ -12,4 +12,11 @@ dependencies = [
     "pathlib>=1.0.1",
     "rich>=13.9.4",
     "statsmodels>=0.14.4",
+    "plotly-express>=0.4.1",
+    "plotly>=6.0.0",
+    "pyshp>=2.3.1",
+    "httpx>=0.28.1",
+    "lxml>=5.3.1",
+    "cssselect>=1.2.0",
+    "dash>=2.18.2",
 ]
