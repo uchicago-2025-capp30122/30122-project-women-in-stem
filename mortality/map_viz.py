@@ -63,18 +63,18 @@ def run_app():
     mortality_data = load_data(DEATHS, False)
 
     abortion_map = map_abortion_laws()
-    abortion_data = load_data(ABORTION_LAWS, True)
+    #abortion_data = load_data(ABORTION_LAWS, True)
 
-    abortion_map.show()
+    #abortion_map.show()
     #mortality_map.show()
 
-    # app = Dash()
-    # app.layout = html.Div([
-    #     dcc.Graph(figure=mortality_map),
-    #     dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
-    # ])
+    app = Dash()
+    app.layout = html.Div([
+        dcc.Graph(figure=mortality_map),
+        dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
+    ])
 
-    # app.run_server(debug=True, use_reloader=False)
+    app.run_server(debug=True, use_reloader=False)
     
 
 if __name__ == '__main__':
