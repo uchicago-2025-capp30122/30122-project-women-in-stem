@@ -12,6 +12,8 @@ import numpy as np
 from rich.console import Console
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+from dash import Dash, dcc, html, Input, Output,callback
+
 
 INDEPENDENT_VAR = ['region', 'race','education', 'ten_year_age_groups']
 
@@ -64,8 +66,8 @@ def full_model(train_data, test_data):
     maternal_predicted = train_model.predict(exog = test_data)
     test_r2 = r2_score(test_data['percent_total_deaths'], maternal_predicted)
 
-    print(train_model.summary())
-    print('r^2',test_r2)
+    # print(train_model.summary())
+    # print('r^2',test_r2)
     
     return equation_str, train_model, test_r2
 
@@ -134,13 +136,55 @@ def user_prediction(region:str, race:str, education:str, age:str):
     })
     
     user_mortality_r = opt_model.predict(inputs)
-    console.print(user_mortality_r)
+    # console.print(user_mortality_r)
     # console.print("predictive model:", complete_equation)
+    return user_mortality_r
 
-    # Generate the maternality mortality rate based on user input
-    # IN PROGRESS
+def user_input_dash():
+    train_data, test_data = get_data()
 
+    app = Dash()
+    app.layout = html.Div([
+        html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'center', 'fontSize': '32px'}),
 
+        html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
+        html.Div([
+            dcc.Dropdown(train_data['region'].unique(), placeholder="Select...", id='region'),
+        ]),
+        html.Div([
+            dcc.Dropdown(train_data['race'].unique(), placeholder="Select...", id='race')
+        ]),
+        html.Div([
+            dcc.Dropdown(train_data['education'].unique(), placeholder="Select...", id='education')
+        ]),
+        html.Div([
+            dcc.Dropdown(sorted(train_data['ten_year_age_groups'].unique()), placeholder="Select...", id='age')
+        ]),
+
+        html.H2("Your predicted maternal mortality rate"),
+        html.Div(id='output-mortality', style={'fontWeight': 'bold', 'marginBottom': '20px'})
+    ])
+
+    @callback(
+        Output(component_id = 'output-mortality', component_property = 'children'),
+        Input(component_id='region', component_property = 'value'),
+        Input(component_id='race', component_property = 'value'),
+        Input(component_id='education', component_property = 'value'),
+        Input(component_id='age', component_property = 'value'),
+    )
+
+    def output_mortality_rate(region, race, education, age):
+        predicted_result = user_prediction(region, race, education, age)
+        predicted_value = predicted_result.values[0]
+        print(predicted_result)
+        if pd.isna(predicted_value):
+            predicted_value = "..."
+        return f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
+
+    app.run_server(debug=True)
+
+if __name__ == '__main__':
+    user_input_dash()
 
 # train, test = get_data()
 # main_model(train, test)
