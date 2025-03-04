@@ -116,7 +116,7 @@ for state_info in rawdata_list[0]:
 
 field_names = ['state', 'abbrev', 'deaths', 'lower', 'upper', 'lat_long', 'lat', 'long']
 
-with open(BASE_DIR / '/data/scrape_data/deaths.csv', 'w') as file: 
+with open(BASE_DIR / 'data/scrape_data/deaths.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = field_names) 
     writer.writeheader()
     writer.writerows(state_data)
