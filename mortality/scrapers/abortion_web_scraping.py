@@ -106,8 +106,10 @@ for state_info in rawdata_list[0][1]:
         exception = state_info[2]
         legal = state_info[3]
 
+    print(state)
     if state in STATES:
         abbrev = STATES[state]
+    print(abbrev)
 
     state_data.append({'Location': state,
                        'Abbreviation': abbrev,
@@ -120,4 +122,4 @@ field_names = ['Location', 'Abbreviation', 'Statutory Limit on Abortions', 'Exce
 with open(BASE_DIR / 'data/scrape_data/abortion.csv', 'w') as file: 
     writer = csv.DictWriter(file, fieldnames = field_names) 
     writer.writeheader()
-    writer.writerows(state_data[3:])
+    writer.writerows(state_data[:])

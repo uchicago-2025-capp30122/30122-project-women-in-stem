@@ -23,7 +23,7 @@ def load_data(file, abortion):
     df = pd.read_csv(file)
     
     if abortion:
-        df = df[['Location', 'Statutory Limit on Abortions']]
+        df = df[['Location', 'Abbreviation', 'Statutory Limit on Abortions']]
     
     else:
         df = df[['state', 'abbrev', 'deaths', 'lower', 'upper']]
@@ -49,7 +49,11 @@ def map_mortalities():
 def map_abortion_laws():
     df = load_data(ABORTION_LAWS, True)
 
-    #fig = px.choropleth(locations = )
+    fig = px.choropleth(locations = 'Abbreviation', locationmode="USA-states", scope="usa",
+                   color = 'Statutory Limit on Abortions', hover_data = 'Location',
+                   data_frame = df)
+    
+    return fig
 
 def run_app():
     """ 
@@ -58,9 +62,10 @@ def run_app():
     mortality_map = map_mortalities()
     mortality_data = load_data(DEATHS, False)
 
+    abortion_map = map_abortion_laws()
     abortion_data = load_data(ABORTION_LAWS, True)
-    print(abortion_data)
 
+    abortion_map.show()
     #mortality_map.show()
 
     # app = Dash()
