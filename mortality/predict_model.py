@@ -125,6 +125,7 @@ def user_prediction(region:str, race:str, education:str, age:str):
     """
     train_data, test_data = get_data()
     optimal_equation, opt_model = optimal_model(train_data, test_data)
+    print(opt_model.summary())
     console = Console()
 
 
@@ -161,8 +162,9 @@ def user_input_dash():
             dcc.Dropdown(sorted(train_data['ten_year_age_groups'].unique()), placeholder="Select...", id='age')
         ]),
 
-        html.H2("Your predicted maternal mortality rate"),
-        html.Div(id='output-mortality', style={'fontWeight': 'bold', 'marginBottom': '20px'})
+        html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
+        html.Div(id='output-mortality', style={'marginBottom': '20px'}), 
+        html.Div(id='explain-mortality', style={'marginBottom': '20px'})
     ])
 
     @callback(
@@ -179,8 +181,20 @@ def user_input_dash():
         print(predicted_result)
         if pd.isna(predicted_value):
             predicted_value = "..."
-        return f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
+        else:
+            return f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
 
+    @callback(
+        Output(component_id = 'output-mortality', component_property = 'value'),
+        Input(component_id = 'output-mortality', component_property = 'children')
+
+    )
+
+    def explain_mortality(mortality_rate):
+        print('mortal', type(mortality_rate))
+        split_word = mortality_rate.split()
+        actual_mortal = split_word[-1]
+        return f"Out of 100 women that live in the same and has the same charactersics, {actual_mortal} people would die form maternal mortality"
     app.run_server(debug=True)
 
 if __name__ == '__main__':
