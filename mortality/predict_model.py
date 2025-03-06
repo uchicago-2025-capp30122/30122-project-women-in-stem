@@ -12,8 +12,9 @@ import numpy as np
 # from rich.console import Console
 # from sklearn.model_selection import train_test_split
 # from sklearn.metrics import r2_score
-from sklearn.linear_model import LogisticRegression
+# from sklearn.linear_model import LogisticRegression
 from dash import Dash, dcc, html, Input, Output,callback
+import plotly.express as px
 
 
 INDEPENDENT_VAR = ['region', 'race','education', 'ten_year_age_groups']
@@ -30,6 +31,8 @@ def get_data():
     mortality_data = pd.read_csv(file)
     mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
     mortality_data['mortality_rate'] = mortality_data['percent_total_deaths']/100
+    median_mortal = mortality_data['mortality_rate'] .median()
+    mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > median_mortal).astype(int)
     # train_data, test_data = train_test_split(mortality_data, test_size = 0.2, random_state = 100)
 
     # return train_data, test_data
@@ -50,7 +53,10 @@ def full_model(mortality_data):
     # equation_str = "percent_total_deaths ~ " + "+".join(INDEPENDENT_VAR)
     equation_str = "mortality_rate ~ " + "+".join(INDEPENDENT_VAR)
     # train_model = smf.ols(equation_str, data=train_data).fit()
+    # equation_str = "mortality_binary ~ " + "+".join(INDEPENDENT_VAR)
+    print('eq', equation_str)
     train_model = smf.logit(equation_str, data=mortality_data).fit()
+    # train_model = train_model.fit()
     # maternal_predicted = train_model.predict(exog = test_data)
     # test_r2 = r2_score(test_data['percent_total_deaths'], maternal_predicted)
 
@@ -58,6 +64,7 @@ def full_model(mortality_data):
     # print('r^2',test_r2)
     
     # return equation_str, train_model, test_r2
+    # return train_model
     return train_model, train_model.prsquared
 
 def user_prediction(region:str, race:str, education:str, age:str):
@@ -76,12 +83,13 @@ def user_prediction(region:str, race:str, education:str, age:str):
     """
     # train_data, test_data = get_data()
     mortality_data = get_data()
-    print(mortality_data['mortality_rate'].unique())
+    # print(mortality_data['mortality_rate'].unique())
     # optimal_equation, opt_model = optimal_model(train_data, test_data)
 
     full_logit_model, logit_r2 = full_model(mortality_data)
+    # full_logit_model = full_model(mortality_data)
     print(full_logit_model.summary())
-    print(logit_r2)
+    # print(logit_r2)
     # console = Console()
 
 
@@ -100,7 +108,7 @@ def user_prediction(region:str, race:str, education:str, age:str):
 
 def user_input_dash():
     mortalty_data = get_data()
-
+    print('data', mortalty_data)
     app = Dash()
     app.layout = html.Div([
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'center', 'fontSize': '32px'}),
@@ -120,7 +128,8 @@ def user_input_dash():
         ]),
 
         html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
-        html.Div(id='output-mortality', style={'marginBottom': '20px'}) 
+        html.Div(id='output-mortality', style={'marginBottom': '20px'}),
+        # dcc.Graph(id='indicator-graphic')
         # html.Div(id='explain-mortality', style={'marginBottom': '20px'})
     ])
 
