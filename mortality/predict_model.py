@@ -32,7 +32,9 @@ def get_data():
     mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
     mortality_data['mortality_rate'] = mortality_data['percent_total_deaths']/100
     median_mortal = mortality_data['mortality_rate'] .median()
-    mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > median_mortal).astype(int)
+    # mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > median_mortal).astype(int)
+    print(mortality_data['mortality_rate'].unique())
+    mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > 0.01).astype(int)
     # train_data, test_data = train_test_split(mortality_data, test_size = 0.2, random_state = 100)
 
     # return train_data, test_data
@@ -51,9 +53,9 @@ def full_model(mortality_data):
     """
 
     # equation_str = "percent_total_deaths ~ " + "+".join(INDEPENDENT_VAR)
-    equation_str = "mortality_rate ~ " + "+".join(INDEPENDENT_VAR)
-    # train_model = smf.ols(equation_str, data=train_data).fit()
-    # equation_str = "mortality_binary ~ " + "+".join(INDEPENDENT_VAR)
+    # equation_str = "mortality_rate ~ " + "+".join(INDEPENDENT_VAR)
+    # train_model = smf.ols(equation_str, data=mortality_data).fit()
+    equation_str = "mortality_binary ~ " + "+".join(INDEPENDENT_VAR)
     print('eq', equation_str)
     train_model = smf.logit(equation_str, data=mortality_data).fit()
     # train_model = train_model.fit()
@@ -65,6 +67,7 @@ def full_model(mortality_data):
     
     # return equation_str, train_model, test_r2
     # return train_model
+    # return train_model, train_model.rsquared
     return train_model, train_model.prsquared
 
 def user_prediction(region:str, race:str, education:str, age:str):
@@ -86,7 +89,7 @@ def user_prediction(region:str, race:str, education:str, age:str):
     # print(mortality_data['mortality_rate'].unique())
     # optimal_equation, opt_model = optimal_model(train_data, test_data)
 
-    full_logit_model, logit_r2 = full_model(mortality_data)
+    full_logit_model, _ = full_model(mortality_data)
     # full_logit_model = full_model(mortality_data)
     print(full_logit_model.summary())
     # print(logit_r2)
@@ -108,32 +111,36 @@ def user_prediction(region:str, race:str, education:str, age:str):
 
 def user_input_dash():
     mortalty_data = get_data()
-    print('data', mortalty_data)
+    # print('data', mortalty_data)
     app = Dash()
     app.layout = html.Div([
-        html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'center', 'fontSize': '32px'}),
+        html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
         html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
         html.Div([
-            dcc.Dropdown(mortalty_data['region'].unique(), placeholder="Select...", id='region'),
+            dcc.Dropdown(mortalty_data['region'].unique(), placeholder="Select State Region...", id='region'),
         ]),
         html.Div([
-            dcc.Dropdown(mortalty_data['race'].unique(), placeholder="Select...", id='race')
+            dcc.Dropdown(mortalty_data['race'].unique(), placeholder="Select Race...", id='race')
         ]),
         html.Div([
-            dcc.Dropdown(mortalty_data['education'].unique(), placeholder="Select...", id='education')
+            dcc.Dropdown(mortalty_data['education'].unique(), placeholder="Select Education Level", id='education')
         ]),
         html.Div([
-            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select...", id='age')
+            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age',style={'marginBottom': '20px'})
         ]),
 
-        html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
+        # html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
+        html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
         # dcc.Graph(id='indicator-graphic')
         # html.Div(id='explain-mortality', style={'marginBottom': '20px'})
+        html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
+
     ])
 
     @callback(
+        Output(component_id = 'header-mortality', component_property = 'children'),
         Output(component_id = 'output-mortality', component_property = 'children'),
         Input(component_id='region', component_property = 'value'),
         Input(component_id='race', component_property = 'value'),
@@ -145,10 +152,12 @@ def user_input_dash():
         predicted_result = user_prediction(region, race, education, age)
         predicted_value = predicted_result.values[0]
         print(predicted_result)
+        # header = f"your prediction analysis"
+        # print('your prediction analysis')
         if pd.isna(predicted_value):
             predicted_value = "..."
         else:
-            return f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
+            return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
 
     # @callback(
     #     Output(component_id = 'output-mortality', component_property = 'value'),
