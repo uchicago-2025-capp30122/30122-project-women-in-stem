@@ -9,9 +9,10 @@ import statsmodels.formula.api as smf
 import statsmodels.api as sm
 import numpy as np
 
-from rich.console import Console
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
+# from rich.console import Console
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import r2_score
+from sklearn.linear_model import LogisticRegression
 from dash import Dash, dcc, html, Input, Output,callback
 
 
@@ -28,29 +29,14 @@ def get_data():
     file = Path(__file__).parent.parent.joinpath("data/clean_reg_age_educ.csv")
     mortality_data = pd.read_csv(file)
     mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
-    train_data, test_data = train_test_split(mortality_data, test_size = 0.2, random_state = 100)
+    mortality_data['mortality_rate'] = mortality_data['percent_total_deaths']/100
+    # train_data, test_data = train_test_split(mortality_data, test_size = 0.2, random_state = 100)
 
-    return train_data, test_data
+    # return train_data, test_data
+    return mortality_data
 
-
-def interaction_level(indep_list):
-    """
-    Compute all combinations of the independent variables interaction
-
-    Parameters:
-        columns (list): list containing all independent/column variable names
-
-    Returns:
-        inde_list (list): list containing different combination of independent
-        variables
-    """
-    rv = []
-    for i in range(len(indep_list)):
-        for j in range(i+1, len(indep_list)):
-                rv.append([indep_list[i], indep_list[j]])
-    return rv
-
-def full_model(train_data, test_data):
+def full_model(mortality_data):
+# def full_model(train_data, test_data):
     """
     Create the optimal linear regression model with all data available
 
@@ -61,53 +47,18 @@ def full_model(train_data, test_data):
         predict_model: linear regression of all variables maternal mortality
     """
 
-    equation_str = "percent_total_deaths ~ " + "+".join(INDEPENDENT_VAR)
-    train_model = smf.ols(equation_str, data=train_data).fit()
-    maternal_predicted = train_model.predict(exog = test_data)
-    test_r2 = r2_score(test_data['percent_total_deaths'], maternal_predicted)
+    # equation_str = "percent_total_deaths ~ " + "+".join(INDEPENDENT_VAR)
+    equation_str = "mortality_rate ~ " + "+".join(INDEPENDENT_VAR)
+    # train_model = smf.ols(equation_str, data=train_data).fit()
+    train_model = smf.logit(equation_str, data=mortality_data).fit()
+    # maternal_predicted = train_model.predict(exog = test_data)
+    # test_r2 = r2_score(test_data['percent_total_deaths'], maternal_predicted)
 
     # print(train_model.summary())
     # print('r^2',test_r2)
     
-    return equation_str, train_model, test_r2
-
-def optimal_model(train_data, test_data):
-    """
-    Find the optimal linear regression model on specific elimination level which
-    has the highest R^2 on the testing data
-
-    Parameters:
-        mortality_data (Dataframe): Dataframe containing all data
-        columns (list): list containing all independent/column variable names
-
-    Returns:
-        indep_list (list): list containing different combination of independent
-        variables for optimal model
-    """
-    # create the full linear regression model
-    main_equation, main_model, test_r2 = full_model(train_data, test_data)
-    current_model = main_model
-    best_r2 = test_r2
-    best_equation = main_equation
-    best_model = current_model
-    interaction_list = interaction_level(INDEPENDENT_VAR)
-
-    # finding the highest test r2 score
-    for each_e in interaction_list:
-        interaction = f'C({each_e[0]}):C({each_e[1]})'
-        new_equation = main_equation + "+" + interaction
-        new_model = smf.ols(new_equation, data=train_data).fit()
-        new_predicted = new_model.predict(exog = test_data)
-        new_r2 = r2_score(test_data['percent_total_deaths'], new_predicted)
-
-        if best_r2 < new_r2:
-            # print('yes')
-            best_r2 = new_r2
-            # new_indep_list = each_e
-            best_equation = new_equation
-            best_model = new_model
-    # new_indep_list = INDEPENDENT_VAR + [new_indep_list]
-    return best_equation, best_model
+    # return equation_str, train_model, test_r2
+    return train_model, train_model.prsquared
 
 def user_prediction(region:str, race:str, education:str, age:str):
     """
@@ -123,10 +74,15 @@ def user_prediction(region:str, race:str, education:str, age:str):
     Returns:
         Maternal mortality rate (float)
     """
-    train_data, test_data = get_data()
-    optimal_equation, opt_model = optimal_model(train_data, test_data)
-    print(opt_model.summary())
-    console = Console()
+    # train_data, test_data = get_data()
+    mortality_data = get_data()
+    print(mortality_data['mortality_rate'].unique())
+    # optimal_equation, opt_model = optimal_model(train_data, test_data)
+
+    full_logit_model, logit_r2 = full_model(mortality_data)
+    print(full_logit_model.summary())
+    print(logit_r2)
+    # console = Console()
 
 
     inputs = pd.DataFrame({
@@ -136,13 +92,14 @@ def user_prediction(region:str, race:str, education:str, age:str):
         INDEPENDENT_VAR[3] : [age]
     })
     
-    user_mortality_r = opt_model.predict(inputs)
+    # user_mortality_r = opt_model.predict(inputs)
     # console.print(user_mortality_r)
     # console.print("predictive model:", complete_equation)
+    user_mortality_r = full_logit_model.predict(inputs)
     return user_mortality_r
 
 def user_input_dash():
-    train_data, test_data = get_data()
+    mortalty_data = get_data()
 
     app = Dash()
     app.layout = html.Div([
@@ -150,21 +107,21 @@ def user_input_dash():
 
         html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
         html.Div([
-            dcc.Dropdown(train_data['region'].unique(), placeholder="Select...", id='region'),
+            dcc.Dropdown(mortalty_data['region'].unique(), placeholder="Select...", id='region'),
         ]),
         html.Div([
-            dcc.Dropdown(train_data['race'].unique(), placeholder="Select...", id='race')
+            dcc.Dropdown(mortalty_data['race'].unique(), placeholder="Select...", id='race')
         ]),
         html.Div([
-            dcc.Dropdown(train_data['education'].unique(), placeholder="Select...", id='education')
+            dcc.Dropdown(mortalty_data['education'].unique(), placeholder="Select...", id='education')
         ]),
         html.Div([
-            dcc.Dropdown(sorted(train_data['ten_year_age_groups'].unique()), placeholder="Select...", id='age')
+            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select...", id='age')
         ]),
 
         html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
-        html.Div(id='output-mortality', style={'marginBottom': '20px'}), 
-        html.Div(id='explain-mortality', style={'marginBottom': '20px'})
+        html.Div(id='output-mortality', style={'marginBottom': '20px'}) 
+        # html.Div(id='explain-mortality', style={'marginBottom': '20px'})
     ])
 
     @callback(
@@ -184,30 +141,19 @@ def user_input_dash():
         else:
             return f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
 
-    @callback(
-        Output(component_id = 'output-mortality', component_property = 'value'),
-        Input(component_id = 'output-mortality', component_property = 'children')
+    # @callback(
+    #     Output(component_id = 'output-mortality', component_property = 'value'),
+    #     Input(component_id = 'output-mortality', component_property = 'children')
 
-    )
+    # )
 
-    def explain_mortality(mortality_rate):
-        print('mortal', type(mortality_rate))
-        split_word = mortality_rate.split()
-        actual_mortal = split_word[-1]
-        return f"Out of 100 women that live in the same and has the same charactersics, {actual_mortal} people would die form maternal mortality"
+    # def explain_mortality(mortality_rate):
+    #     print('mortal', type(mortality_rate))
+    #     split_word = mortality_rate.split()
+    #     actual_mortal = split_word[-1]
+    #     return f"Out of 100 women that live in the same and has the same charactersics, {actual_mortal} people would die form maternal mortality"
+    
     app.run_server(debug=True)
 
 if __name__ == '__main__':
     user_input_dash()
-
-# train, test = get_data()
-# main_model(train, test)
-# print("------")
-# independent_l = interaction_level(INDEPENDENT_VAR)
-
-# print("independent_l", independent_l)
-# best_equation, best_model = optimal_model(train, test,INDEPENDENT_VAR)
-# print("best_equation", best_equation)
-# print("best_model", best_model)
-# print("new_indep_list", new_indep_list)
-# user_prediction()
