@@ -74,7 +74,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     })
     
     user_mortality_r = full_logit_model.predict(inputs)
-    return user_mortality_r
+    return user_mortality_r.values[0]
 
 def user_input_dash():
     mortalty_data = get_data()
@@ -126,13 +126,13 @@ def user_input_dash():
         if  None in [region, race, education, age]:
             return "", ""
         predicted_result = user_prediction(region, race, education, age)
-        predicted_value = predicted_result.values[0]
+        # predicted_value = predicted_result.values[0]
         # print(predicted_result)
-
-        if pd.isna(predicted_value):
+        # if np.isnan(predicted_value):
+        if pd.isna(predicted_result):
             predicted_value = "..."
         else:
-            return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
+            return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_result}"
 
     @callback(
         Output(component_id = 'boxplot', component_property = 'figure'),
