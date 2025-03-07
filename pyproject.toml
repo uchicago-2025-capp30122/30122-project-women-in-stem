@@ -1,5 +1,5 @@
 [project]
-name = "30122-project-women-in-stem"
+name = "mortality"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -19,4 +19,10 @@ dependencies = [
     "lxml>=5.3.1",
     "cssselect>=1.2.0",
     "dash>=2.18.2",
+    "scikit-learn>=1.6.1",
+    "pytest>=8.3.5",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
