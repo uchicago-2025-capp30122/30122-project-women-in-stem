@@ -1,13 +1,10 @@
 import pytest
 from pathlib import Path
 from mortality.utils import STATE_ABBREVIATIONS
-# from mortality import predict_model
 from mortality.predict_model import (
     get_data,
     user_prediction
 )
-
-# mortality_df = get_data()
 
 @pytest.fixture
 def mortality_df():
