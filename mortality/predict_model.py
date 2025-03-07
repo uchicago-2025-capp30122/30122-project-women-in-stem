@@ -112,6 +112,7 @@ def user_prediction(region:str, race:str, education:str, age:str):
 def user_input_dash():
     mortalty_data = get_data()
     # print('data', mortalty_data)
+
     app = Dash()
     app.layout = html.Div([
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
@@ -136,16 +137,23 @@ def user_input_dash():
         # dcc.Graph(id='indicator-graphic')
         # html.Div(id='explain-mortality', style={'marginBottom': '20px'})
         html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
+        html.Div([
+            dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var1'),
+        ]),
+        html.Div([
+            dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var2'),
+        ]),
+        dcc.Graph(id='boxplot')
 
     ])
 
     @callback(
         Output(component_id = 'header-mortality', component_property = 'children'),
         Output(component_id = 'output-mortality', component_property = 'children'),
-        Input(component_id='region', component_property = 'value'),
+        [Input(component_id='region', component_property = 'value'),
         Input(component_id='race', component_property = 'value'),
         Input(component_id='education', component_property = 'value'),
-        Input(component_id='age', component_property = 'value'),
+        Input(component_id='age', component_property = 'value')],
     )
 
     def output_mortality_rate(region, race, education, age):
@@ -159,17 +167,15 @@ def user_input_dash():
         else:
             return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_value}"
 
-    # @callback(
-    #     Output(component_id = 'output-mortality', component_property = 'value'),
-    #     Input(component_id = 'output-mortality', component_property = 'children')
-
-    # )
-
-    # def explain_mortality(mortality_rate):
-    #     print('mortal', type(mortality_rate))
-    #     split_word = mortality_rate.split()
-    #     actual_mortal = split_word[-1]
-    #     return f"Out of 100 women that live in the same and has the same charactersics, {actual_mortal} people would die form maternal mortality"
+    @callback(
+        Output(component_id = 'boxplot', component_property = 'figure'),
+        Input(component_id = 'indepdent-var1', component_property = 'value'), 
+        Input(component_id = 'indepdent-var2', component_property = 'value')
+    )
+    def update_boxplot(independent_var1, independent_var2):
+        fig = px.box(mortalty_data, x=independent_var1, y="percent_total_deaths", color=independent_var2)
+        
+        return fig
     
     app.run_server(debug=True)
 
