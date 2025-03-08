@@ -1,121 +1,121 @@
 region,race,education,ten_year_age_groups,deaths,percent_total_deaths
-northeast,white,9th through 12th grade with no diploma,25-34,12,0.2
-northeast,white,9th through 12th grade with no diploma,35-44,17,0.2
-northeast,black or african american,high school graduate or ged completed,15-24,17,0.2
-northeast,black or african american,high school graduate or ged completed,25-34,45,0.6
-northeast,black or african american,high school graduate or ged completed,35-44,32,0.4
-northeast,white,high school graduate or ged completed,15-24,28,0.4
-northeast,white,high school graduate or ged completed,25-34,56,0.8
-northeast,white,high school graduate or ged completed,35-44,48,0.7
-northeast,black or african american,"some college credit, but not a degree.",25-34,12,0.2
-northeast,black or african american,"some college credit, but not a degree.",35-44,14,0.2
-northeast,white,"some college credit, but not a degree.",25-34,22,0.3
-northeast,white,"some college credit, but not a degree.",35-44,15,0.2
-northeast,black or african american,"associate degree (aa,as)",25-34,10,0.1
-northeast,white,"associate degree (aa,as)",25-34,12,0.2
-northeast,white,"associate degree (aa,as)",35-44,11,0.1
-northeast,black or african american,"bachelor?s degree (ba, ab, bs)",25-34,10,0.1
-northeast,white,"bachelor?s degree (ba, ab, bs)",25-34,18,0.2
-northeast,white,"bachelor?s degree (ba, ab, bs)",35-44,29,0.4
-northeast,white,"master?s degree (ma, ms, meng, med, msw, mba)",35-44,15,0.2
-northeast,asian,unknown,25-34,10,0.1
-northeast,black or african american,unknown,15-24,19,0.3
-northeast,black or african american,unknown,25-34,73,1.0
-northeast,black or african american,unknown,35-44,88,1.2
-northeast,white,unknown,15-24,37,0.5
-northeast,white,unknown,25-34,128,1.7
-northeast,white,unknown,35-44,115,1.6
-midwest,white,8th grade or less,35-44,12,0.2
-midwest,black or african american,9th through 12th grade with no diploma,25-34,17,0.2
-midwest,white,9th through 12th grade with no diploma,15-24,10,0.1
-midwest,white,9th through 12th grade with no diploma,25-34,22,0.3
-midwest,white,9th through 12th grade with no diploma,35-44,17,0.2
-midwest,black or african american,high school graduate or ged completed,15-24,14,0.2
-midwest,black or african american,high school graduate or ged completed,25-34,62,0.8
-midwest,black or african american,high school graduate or ged completed,35-44,26,0.4
-midwest,white,high school graduate or ged completed,15-24,25,0.3
-midwest,white,high school graduate or ged completed,25-34,86,1.2
-midwest,white,high school graduate or ged completed,35-44,74,1.0
-midwest,black or african american,"some college credit, but not a degree.",25-34,24,0.3
-midwest,black or african american,"some college credit, but not a degree.",35-44,17,0.2
-midwest,white,"some college credit, but not a degree.",15-24,11,0.1
-midwest,white,"some college credit, but not a degree.",25-34,50,0.7
-midwest,white,"some college credit, but not a degree.",35-44,18,0.2
-midwest,white,"associate degree (aa,as)",25-34,20,0.3
-midwest,white,"associate degree (aa,as)",35-44,19,0.3
-midwest,white,"bachelor?s degree (ba, ab, bs)",25-34,40,0.5
-midwest,white,"bachelor?s degree (ba, ab, bs)",35-44,29,0.4
-midwest,white,"master?s degree (ma, ms, meng, med, msw, mba)",35-44,14,0.2
-midwest,black or african american,unknown,15-24,25,0.3
-midwest,black or african american,unknown,25-34,80,1.1
-midwest,black or african american,unknown,35-44,55,0.7
-midwest,white,unknown,15-24,64,0.9
-midwest,white,unknown,25-34,208,2.8
-midwest,white,unknown,35-44,162,2.2
-south,white,8th grade or less,25-34,16,0.2
-south,white,8th grade or less,35-44,31,0.4
-south,black or african american,9th through 12th grade with no diploma,15-24,31,0.4
-south,black or african american,9th through 12th grade with no diploma,25-34,40,0.5
-south,black or african american,9th through 12th grade with no diploma,35-44,31,0.4
-south,white,9th through 12th grade with no diploma,15-24,27,0.4
-south,white,9th through 12th grade with no diploma,25-34,62,0.8
-south,white,9th through 12th grade with no diploma,35-44,54,0.7
-south,black or african american,high school graduate or ged completed,15-24,64,0.9
-south,black or african american,high school graduate or ged completed,25-34,169,2.3
-south,black or african american,high school graduate or ged completed,35-44,119,1.6
-south,white,high school graduate or ged completed,15-24,75,1.0
-south,white,high school graduate or ged completed,25-34,224,3.0
-south,white,high school graduate or ged completed,35-44,157,2.1
-south,black or african american,"some college credit, but not a degree.",15-24,24,0.3
-south,black or african american,"some college credit, but not a degree.",25-34,82,1.1
-south,black or african american,"some college credit, but not a degree.",35-44,45,0.6
-south,white,"some college credit, but not a degree.",15-24,14,0.2
-south,white,"some college credit, but not a degree.",25-34,90,1.2
-south,white,"some college credit, but not a degree.",35-44,60,0.8
-south,black or african american,"associate degree (aa,as)",25-34,35,0.5
-south,black or african american,"associate degree (aa,as)",35-44,29,0.4
-south,white,"associate degree (aa,as)",15-24,11,0.1
-south,white,"associate degree (aa,as)",25-34,50,0.7
-south,white,"associate degree (aa,as)",35-44,40,0.5
-south,black or african american,"bachelor?s degree (ba, ab, bs)",25-34,42,0.6
-south,black or african american,"bachelor?s degree (ba, ab, bs)",35-44,36,0.5
-south,white,"bachelor?s degree (ba, ab, bs)",25-34,62,0.8
-south,white,"bachelor?s degree (ba, ab, bs)",35-44,58,0.8
-south,black or african american,"master?s degree (ma, ms, meng, med, msw, mba)",25-34,14,0.2
-south,black or african american,"master?s degree (ma, ms, meng, med, msw, mba)",35-44,22,0.3
-south,white,"master?s degree (ma, ms, meng, med, msw, mba)",25-34,31,0.4
-south,white,"master?s degree (ma, ms, meng, med, msw, mba)",35-44,24,0.3
-south,asian,unknown,25-34,14,0.2
-south,asian,unknown,35-44,29,0.4
-south,black or african american,unknown,15-24,105,1.4
-south,black or african american,unknown,25-34,319,4.3
-south,black or african american,unknown,35-44,251,3.4
-south,white,unknown,15-24,139,1.9
-south,white,unknown,25-34,403,5.5
-south,white,unknown,35-44,310,4.2
-south,white,unknown,45-54,11,0.1
-west,white,9th through 12th grade with no diploma,15-24,17,0.2
-west,white,9th through 12th grade with no diploma,25-34,25,0.3
-west,white,9th through 12th grade with no diploma,35-44,23,0.3
-west,black or african american,high school graduate or ged completed,25-34,12,0.2
-west,white,high school graduate or ged completed,15-24,27,0.4
-west,white,high school graduate or ged completed,25-34,75,1.0
-west,white,high school graduate or ged completed,35-44,46,0.6
-west,black or african american,"some college credit, but not a degree.",35-44,10,0.1
-west,white,"some college credit, but not a degree.",25-34,50,0.7
-west,white,"some college credit, but not a degree.",35-44,29,0.4
-west,white,"associate degree (aa,as)",25-34,19,0.3
-west,white,"associate degree (aa,as)",35-44,20,0.3
-west,asian,"bachelor?s degree (ba, ab, bs)",35-44,10,0.1
-west,white,"bachelor?s degree (ba, ab, bs)",25-34,32,0.4
-west,white,"bachelor?s degree (ba, ab, bs)",35-44,13,0.2
-west,american indian or alaska native,unknown,25-34,23,0.3
-west,asian,unknown,25-34,18,0.2
-west,asian,unknown,35-44,27,0.4
-west,black or african american,unknown,25-34,36,0.5
-west,black or african american,unknown,35-44,28,0.4
-west,white,unknown,15-24,59,0.8
-west,white,unknown,25-34,187,2.5
-west,white,unknown,35-44,139,1.9
-west,white,unknown,45-54,10,0.1
-west,more than one race,unknown,25-34,14,0.2
+Northeast,white,9th through 12th grade with no diploma,25-34,12,0.2
+Northeast,white,9th through 12th grade with no diploma,35-44,17,0.2
+Northeast,black or african american,high school graduate or ged completed,15-24,17,0.2
+Northeast,black or african american,high school graduate or ged completed,25-34,45,0.6
+Northeast,black or african american,high school graduate or ged completed,35-44,32,0.4
+Northeast,white,high school graduate or ged completed,15-24,28,0.4
+Northeast,white,high school graduate or ged completed,25-34,56,0.8
+Northeast,white,high school graduate or ged completed,35-44,48,0.7
+Northeast,black or african american,"some college credit, but not a degree",25-34,12,0.2
+Northeast,black or african american,"some college credit, but not a degree",35-44,14,0.2
+Northeast,white,"some college credit, but not a degree",25-34,22,0.3
+Northeast,white,"some college credit, but not a degree",35-44,15,0.2
+Northeast,black or african american,"associate degree (aa,as)",25-34,10,0.1
+Northeast,white,"associate degree (aa,as)",25-34,12,0.2
+Northeast,white,"associate degree (aa,as)",35-44,11,0.1
+Northeast,black or african american,"bachelor's degree (ba, ab, bs)",25-34,10,0.1
+Northeast,white,"bachelor's degree (ba, ab, bs)",25-34,18,0.2
+Northeast,white,"bachelor's degree (ba, ab, bs)",35-44,29,0.4
+Northeast,white,"master's degree (ma, ms, meng, med, msw, mba)",35-44,15,0.2
+Northeast,asian,unknown,25-34,10,0.1
+Northeast,black or african american,unknown,15-24,19,0.3
+Northeast,black or african american,unknown,25-34,73,1.0
+Northeast,black or african american,unknown,35-44,88,1.2
+Northeast,white,unknown,15-24,37,0.5
+Northeast,white,unknown,25-34,128,1.7
+Northeast,white,unknown,35-44,115,1.6
+Midwest,white,8th grade or less,35-44,12,0.2
+Midwest,black or african american,9th through 12th grade with no diploma,25-34,17,0.2
+Midwest,white,9th through 12th grade with no diploma,15-24,10,0.1
+Midwest,white,9th through 12th grade with no diploma,25-34,22,0.3
+Midwest,white,9th through 12th grade with no diploma,35-44,17,0.2
+Midwest,black or african american,high school graduate or ged completed,15-24,14,0.2
+Midwest,black or african american,high school graduate or ged completed,25-34,62,0.8
+Midwest,black or african american,high school graduate or ged completed,35-44,26,0.4
+Midwest,white,high school graduate or ged completed,15-24,25,0.3
+Midwest,white,high school graduate or ged completed,25-34,86,1.2
+Midwest,white,high school graduate or ged completed,35-44,74,1.0
+Midwest,black or african american,"some college credit, but not a degree",25-34,24,0.3
+Midwest,black or african american,"some college credit, but not a degree",35-44,17,0.2
+Midwest,white,"some college credit, but not a degree",15-24,11,0.1
+Midwest,white,"some college credit, but not a degree",25-34,50,0.7
+Midwest,white,"some college credit, but not a degree",35-44,18,0.2
+Midwest,white,"associate degree (aa,as)",25-34,20,0.3
+Midwest,white,"associate degree (aa,as)",35-44,19,0.3
+Midwest,white,"bachelor's degree (ba, ab, bs)",25-34,40,0.5
+Midwest,white,"bachelor's degree (ba, ab, bs)",35-44,29,0.4
+Midwest,white,"master's degree (ma, ms, meng, med, msw, mba)",35-44,14,0.2
+Midwest,black or african american,unknown,15-24,25,0.3
+Midwest,black or african american,unknown,25-34,80,1.1
+Midwest,black or african american,unknown,35-44,55,0.7
+Midwest,white,unknown,15-24,64,0.9
+Midwest,white,unknown,25-34,208,2.8
+Midwest,white,unknown,35-44,162,2.2
+South,white,8th grade or less,25-34,16,0.2
+South,white,8th grade or less,35-44,31,0.4
+South,black or african american,9th through 12th grade with no diploma,15-24,31,0.4
+South,black or african american,9th through 12th grade with no diploma,25-34,40,0.5
+South,black or african american,9th through 12th grade with no diploma,35-44,31,0.4
+South,white,9th through 12th grade with no diploma,15-24,27,0.4
+South,white,9th through 12th grade with no diploma,25-34,62,0.8
+South,white,9th through 12th grade with no diploma,35-44,54,0.7
+South,black or african american,high school graduate or ged completed,15-24,64,0.9
+South,black or african american,high school graduate or ged completed,25-34,169,2.3
+South,black or african american,high school graduate or ged completed,35-44,119,1.6
+South,white,high school graduate or ged completed,15-24,75,1.0
+South,white,high school graduate or ged completed,25-34,224,3.0
+South,white,high school graduate or ged completed,35-44,157,2.1
+South,black or african american,"some college credit, but not a degree",15-24,24,0.3
+South,black or african american,"some college credit, but not a degree",25-34,82,1.1
+South,black or african american,"some college credit, but not a degree",35-44,45,0.6
+South,white,"some college credit, but not a degree",15-24,14,0.2
+South,white,"some college credit, but not a degree",25-34,90,1.2
+South,white,"some college credit, but not a degree",35-44,60,0.8
+South,black or african american,"associate degree (aa,as)",25-34,35,0.5
+South,black or african american,"associate degree (aa,as)",35-44,29,0.4
+South,white,"associate degree (aa,as)",15-24,11,0.1
+South,white,"associate degree (aa,as)",25-34,50,0.7
+South,white,"associate degree (aa,as)",35-44,40,0.5
+South,black or african american,"bachelor's degree (ba, ab, bs)",25-34,42,0.6
+South,black or african american,"bachelor's degree (ba, ab, bs)",35-44,36,0.5
+South,white,"bachelor's degree (ba, ab, bs)",25-34,62,0.8
+South,white,"bachelor's degree (ba, ab, bs)",35-44,58,0.8
+South,black or african american,"master's degree (ma, ms, meng, med, msw, mba)",25-34,14,0.2
+South,black or african american,"master's degree (ma, ms, meng, med, msw, mba)",35-44,22,0.3
+South,white,"master's degree (ma, ms, meng, med, msw, mba)",25-34,31,0.4
+South,white,"master's degree (ma, ms, meng, med, msw, mba)",35-44,24,0.3
+South,asian,unknown,25-34,14,0.2
+South,asian,unknown,35-44,29,0.4
+South,black or african american,unknown,15-24,105,1.4
+South,black or african american,unknown,25-34,319,4.3
+South,black or african american,unknown,35-44,251,3.4
+South,white,unknown,15-24,139,1.9
+South,white,unknown,25-34,403,5.5
+South,white,unknown,35-44,310,4.2
+South,white,unknown,45-54,11,0.1
+West,white,9th through 12th grade with no diploma,15-24,17,0.2
+West,white,9th through 12th grade with no diploma,25-34,25,0.3
+West,white,9th through 12th grade with no diploma,35-44,23,0.3
+West,black or african american,high school graduate or ged completed,25-34,12,0.2
+West,white,high school graduate or ged completed,15-24,27,0.4
+West,white,high school graduate or ged completed,25-34,75,1.0
+West,white,high school graduate or ged completed,35-44,46,0.6
+West,black or african american,"some college credit, but not a degree",35-44,10,0.1
+West,white,"some college credit, but not a degree",25-34,50,0.7
+West,white,"some college credit, but not a degree",35-44,29,0.4
+West,white,"associate degree (aa,as)",25-34,19,0.3
+West,white,"associate degree (aa,as)",35-44,20,0.3
+West,asian,"bachelor's degree (ba, ab, bs)",35-44,10,0.1
+West,white,"bachelor's degree (ba, ab, bs)",25-34,32,0.4
+West,white,"bachelor's degree (ba, ab, bs)",35-44,13,0.2
+West,american indian or alaska native,unknown,25-34,23,0.3
+West,asian,unknown,25-34,18,0.2
+West,asian,unknown,35-44,27,0.4
+West,black or african american,unknown,25-34,36,0.5
+West,black or african american,unknown,35-44,28,0.4
+West,white,unknown,15-24,59,0.8
+West,white,unknown,25-34,187,2.5
+West,white,unknown,35-44,139,1.9
+West,white,unknown,45-54,10,0.1
+West,more than one race,unknown,25-34,14,0.2
