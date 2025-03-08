@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 import plotly.express as px
-from dash import Dash, dcc, html, dash_table
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
 
 # # From this data source, we aim to use the summary statistics provided by the 
 # # second green map. This data lives in a CSV file, composed of 51 rows, 
@@ -52,6 +52,10 @@ def map_mortalities():
     return fig
 
 def map_abortion_laws():
+    """
+    Creates a chloropleth map by state of statutory limits on abortion
+
+    """
     df = load_data(ABORTION_LAWS, True)
 
     fig = px.choropleth(locations = 'Abbreviation', locationmode="USA-states", scope="usa",
@@ -74,11 +78,22 @@ def run_app():
 
     app = Dash()
     app.layout = html.Div([
-        html.H4("Analysis of maternal mortality rates and abortion legislation"),
-        dcc.Graph(figure=mortality_map),
-        dcc.Graph(figure=abortion_map),
+        html.H1("Analysis of maternal mortality rates and abortion legislation"),
+        html.Hr(),
+        dcc.RadioItems(options=["Statutory Limits on Abortion", "Maternal Mortality Rates"], value= 'Maternal Mortality Rates', id="map_select"),
+        dcc.Graph(figure= {}, id='map')
         #dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
     ])
+
+    @callback(
+        Output(component_id='map', component_property='figure'),
+        Input(component_id='map_select', component_property='value')
+    )
+    def update_map(map):
+        if map == 'Maternal Mortality Rates':
+            return mortality_map
+        return abortion_map
+
 
     app.run_server(debug=True, use_reloader=False)
     

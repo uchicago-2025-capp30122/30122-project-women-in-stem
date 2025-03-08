@@ -59,8 +59,6 @@ for state_info in rawdata_list[0]:
 
     state_data.append({'state': state, 'abbrev' : abbrev, 'deaths': deaths, 'lower': lower, 'upper': upper, 'lat_long': lat_long, 'lat': lat, 'long': long})
 
-#print(state_data)
-
 field_names = ['state', 'abbrev', 'deaths', 'lower', 'upper', 'lat_long', 'lat', 'long']
 
 with open(BASE_DIR / 'data/scrape_data/deaths.csv', 'w') as file: 
