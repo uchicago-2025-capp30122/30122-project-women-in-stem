@@ -24,6 +24,11 @@ def load_data(file, abortion):
     
     if abortion:
         df = df[['Location', 'Abbreviation', 'Statutory Limit on Abortions']]
+        sort_order = ["Abortion banned", "Fetal viability", "6 weeks LMP", "12 weeks LMP", "18 weeks LMP", 
+                      "22 weeks LMP", "24 weeks LMP", "3rd trimester"]
+        
+        df['sort_order'] = df['Statutory Limit on Abortions'].apply(lambda x: sort_order.index(x) if x in sort_order else len(sort_order))
+        df = df.sort_values(by= 'sort_order')
     
     else:
         df = df[['state', 'abbrev', 'deaths', 'lower', 'upper']]
@@ -50,8 +55,10 @@ def map_abortion_laws():
     df = load_data(ABORTION_LAWS, True)
 
     fig = px.choropleth(locations = 'Abbreviation', locationmode="USA-states", scope="usa",
-                   color = 'Statutory Limit on Abortions', hover_data = 'Location',
-                   data_frame = df)
+                        color = 'Statutory Limit on Abortions', hover_data = 'Location',
+                        color_discrete_sequence = ["#D95319", "#F2801E", "#FBAF5F", "#D8D8D8", "#A3D0F2", "#5AB4F2", "#1E69D2", "#00298C"],
+                        title = "Statutory limit on abortions by state",
+                        data_frame = df)
     
     return fig
 
@@ -63,15 +70,14 @@ def run_app():
     mortality_data = load_data(DEATHS, False)
 
     abortion_map = map_abortion_laws()
-    #abortion_data = load_data(ABORTION_LAWS, True)
-
-    #abortion_map.show()
-    #mortality_map.show()
+    abortion_data = load_data(ABORTION_LAWS, True)
 
     app = Dash()
     app.layout = html.Div([
+        html.H4("Analysis of maternal mortality rates and abortion legislation"),
         dcc.Graph(figure=mortality_map),
-        dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
+        dcc.Graph(figure=abortion_map),
+        #dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
     ])
 
     app.run_server(debug=True, use_reloader=False)
