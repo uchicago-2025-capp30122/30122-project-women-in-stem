@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 import plotly.express as px
-from dash import Dash, dcc, html, dash_table
+from dash import Dash, html, dash_table, dcc, callback, Output, Input
 
 # # From this data source, we aim to use the summary statistics provided by the 
 # # second green map. This data lives in a CSV file, composed of 51 rows, 
@@ -24,6 +24,11 @@ def load_data(file, abortion):
     
     if abortion:
         df = df[['Location', 'Abbreviation', 'Statutory Limit on Abortions']]
+        sort_order = ["Abortion banned", "Fetal viability", "6 weeks LMP", "12 weeks LMP", "18 weeks LMP", 
+                      "22 weeks LMP", "24 weeks LMP", "3rd trimester"]
+        
+        df['sort_order'] = df['Statutory Limit on Abortions'].apply(lambda x: sort_order.index(x) if x in sort_order else len(sort_order))
+        df = df.sort_values(by= 'sort_order')
     
     else:
         df = df[['state', 'abbrev', 'deaths', 'lower', 'upper']]
@@ -47,11 +52,17 @@ def map_mortalities():
     return fig
 
 def map_abortion_laws():
+    """
+    Creates a chloropleth map by state of statutory limits on abortion
+
+    """
     df = load_data(ABORTION_LAWS, True)
 
     fig = px.choropleth(locations = 'Abbreviation', locationmode="USA-states", scope="usa",
-                   color = 'Statutory Limit on Abortions', hover_data = 'Location',
-                   data_frame = df)
+                        color = 'Statutory Limit on Abortions', hover_data = 'Location',
+                        color_discrete_sequence = ["#D95319", "#F2801E", "#FBAF5F", "#D8D8D8", "#A3D0F2", "#5AB4F2", "#1E69D2", "#00298C"],
+                        title = "Statutory limit on abortions by state",
+                        data_frame = df)
     
     return fig
 
@@ -63,16 +74,26 @@ def run_app():
     mortality_data = load_data(DEATHS, False)
 
     abortion_map = map_abortion_laws()
-    #abortion_data = load_data(ABORTION_LAWS, True)
-
-    #abortion_map.show()
-    #mortality_map.show()
+    abortion_data = load_data(ABORTION_LAWS, True)
 
     app = Dash()
     app.layout = html.Div([
-        dcc.Graph(figure=mortality_map),
-        dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
+        html.H1("Analysis of maternal mortality rates and abortion legislation"),
+        html.Hr(),
+        dcc.RadioItems(options=["Statutory Limits on Abortion", "Maternal Mortality Rates"], value= 'Maternal Mortality Rates', id="map_select"),
+        dcc.Graph(figure= {}, id='map')
+        #dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
     ])
+
+    @callback(
+        Output(component_id='map', component_property='figure'),
+        Input(component_id='map_select', component_property='value')
+    )
+    def update_map(map):
+        if map == 'Maternal Mortality Rates':
+            return mortality_map
+        return abortion_map
+
 
     app.run_server(debug=True, use_reloader=False)
     

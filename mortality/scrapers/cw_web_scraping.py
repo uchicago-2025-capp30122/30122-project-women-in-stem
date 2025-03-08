@@ -5,62 +5,9 @@ import csv
 import pathlib
 import httpx
 import lxml.html
+from mortality.utils import STATE_ABBREVIATIONS
 
 BASE_DIR = pathlib.Path(__file__).parent.parent.parent
-
-STATES = {
-    "Alabama": "AL",
-    "Alaska": "AK",
-    "Arizona": "AZ",
-    "Arkansas": "AR",
-    "California": "CA",
-    "Colorado": "CO",
-    "Connecticut": "CT",
-    "Delaware": "DE",
-    "Florida": "FL",
-    "Georgia": "GA",
-    "Hawaii": "HI",
-    "Idaho": "ID",
-    "Illinois": "IL",
-    "Indiana": "IN",
-    "Iowa": "IA",
-    "Kansas": "KS",
-    "Kentucky": "KY",
-    "Louisiana": "LA",
-    "Maine": "ME",
-    "Maryland": "MD",
-    "Massachusetts": "MA",
-    "Michigan": "MI",
-    "Minnesota": "MN",
-    "Mississippi": "MS",
-    "Missouri": "MO",
-    "Montana": "MT",
-    "Nebraska": "NE",
-    "Nevada": "NV",
-    "New Hampshire": "NH",
-    "New Jersey": "NJ",
-    "New Mexico": "NM",
-    "New York": "NY",
-    "North Carolina": "NC",
-    "North Dakota": "ND",
-    "Ohio": "OH",
-    "Oklahoma": "OK",
-    "Oregon": "OR",
-    "Pennsylvania": "PA",
-    "Rhode Island": "RI",
-    "South Carolina": "SC",
-    "South Dakota": "SD",
-    "Tennessee": "TN",
-    "Texas": "TX",
-    "Utah": "UT",
-    "Vermont": "VT",
-    "Virginia": "VA",
-    "Washington": "WA",
-    "West Virginia": "WV",
-    "Wisconsin": "WI",
-    "Wyoming": "WY",
-}
-
 
 # Data Source #1 : Maternal Mortality Data
 # https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care
@@ -107,12 +54,10 @@ for state_info in rawdata_list[0]:
     lat_long = state_info[3]["value"]
     lat, long = lat_long.split()
 
-    if state in STATES:
-        abbrev = STATES[state]
+    if state in STATE_ABBREVIATIONS:
+        abbrev = STATE_ABBREVIATIONS[state]
 
     state_data.append({'state': state, 'abbrev' : abbrev, 'deaths': deaths, 'lower': lower, 'upper': upper, 'lat_long': lat_long, 'lat': lat, 'long': long})
-
-#print(state_data)
 
 field_names = ['state', 'abbrev', 'deaths', 'lower', 'upper', 'lat_long', 'lat', 'long']
 
