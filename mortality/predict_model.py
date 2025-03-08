@@ -6,13 +6,11 @@ estimate/predict the maternal mortality rate given different factors/characteris
 from pathlib import Path
 import pandas as pd
 import statsmodels.formula.api as smf
-import statsmodels.api as sm
-import numpy as np
 
 from dash import Dash, dcc, html, Input, Output,callback
 import plotly.express as px
 
-
+#independent variable of interest
 INDEPENDENT_VAR = ['region', 'race','education', 'ten_year_age_groups']
 
 def get_data():
@@ -27,9 +25,8 @@ def get_data():
     mortality_data = pd.read_csv(file)
     mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
     mortality_data['mortality_rate'] = mortality_data['percent_total_deaths']/100
-    median_mortal = mortality_data['mortality_rate'] .median()
-    # print(mortality_data['mortality_rate'].unique())
     mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > 0.01).astype(int)
+
     return mortality_data
 
 def full_model(mortality_data):
@@ -97,11 +94,9 @@ def user_input_dash():
             dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age',style={'marginBottom': '20px'})
         ]),
 
-        # html.H2("Your predicted maternal mortality rate Analysis", style={'textDecoration': 'underline'}),
         html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
-        # dcc.Graph(id='indicator-graphic')
-        # html.Div(id='explain-mortality', style={'marginBottom': '20px'})
+
         html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
         html.Div([
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var1'),
@@ -126,9 +121,7 @@ def user_input_dash():
         if  None in [region, race, education, age]:
             return "", ""
         predicted_result = user_prediction(region, race, education, age)
-        # predicted_value = predicted_result.values[0]
-        # print(predicted_result)
-        # if np.isnan(predicted_value):
+
         if pd.isna(predicted_result):
             predicted_value = "..."
         else:

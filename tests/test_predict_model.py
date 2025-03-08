@@ -1,9 +1,8 @@
 import pytest
-from pathlib import Path
-from mortality.utils import STATE_ABBREVIATIONS
 from mortality.predict_model import (
     get_data,
-    user_prediction
+    user_prediction,
+    user_input_dash
 )
 
 @pytest.fixture
@@ -22,5 +21,3 @@ def test_user_prediction_wihtin_bound(mortality_df):
 
     assert user_prediction('south', 'asian', '8th grade or less', '35-44') <= 1
     assert user_prediction('south', 'asian', '8th grade or less', '35-44') >= 0
-
-
