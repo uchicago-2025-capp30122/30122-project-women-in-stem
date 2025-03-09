@@ -1,104 +1,22 @@
-import sys
-import re
-import json
-import csv
-import pathlib
-import httpx
-import lxml.html
+"""
+This file runs web scraping functions to extract data from various urls
+contained within webpages from the Kaiser Family Foundation to extract health-
+related data.
+"""
 
-BASE_DIR = pathlib.Path(__file__).parent.parent
+from web_scraping_functions import get_json_from_html, extract_state_info
+from data_sources import DATA_SOURCES
 
-# Data Source #2: Women's Demographics
-# https://www.kff.org/interactive/womens-health-profiles/alabama/demographics/
+def run_scrapers(data_sources: dict):
+    """
+    This function runs the web scraping functions on the data to be scraped.
 
-# for this, we had to go into the network tab and search through the requests made in order to find the data of interest
+    Parameters: 
+        data_sources: The dictionary that contains all of the necessary
+            information needed to scrape all of the data sources.
+    """
+    for (url, variables, start_index, output_file) in data_sources.values():
+        info_dict = get_json_from_html(url)
+        extract_state_info(info_dict['data'][start_index:], variables, output_file)
 
-
-### Demographics
-
-# race distribution
-# https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Race%20Distribution
-
-# age distribution
-# https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Age%20distribution
-
-# fpl distribution
-# https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=FPL%20distribution
-
-# median weekly earnings
-# https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Median%20Weekly%20Earnings
-
-def get_json_from_html(url: str) -> dict:
-    json_html = httpx.get(url).text
-
-    json_dict = json.loads(json_html)
-
-    return json_dict
-
-race_dict = get_json_from_html("https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Race%20Distribution")
-
-age_dict = get_json_from_html("https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Age%20distribution")
-
-fpl_dict = get_json_from_html("https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=FPL%20distribution")
-
-earnings_dict = get_json_from_html("https://www.kff.org/wp-json/kff/v1/google-sheets-tab?id=1PVDm79MNXt2mj_gZijrEgoQEEj1Koh0Ur9ZV-MrmgYQ&tab=Median%20Weekly%20Earnings")
-
-##### RACE
-race_data = []
-
-for state_info in race_dict['data'][2:]:
-    state, total, white, black, hispanic, asian, nhopi, aian, other = state_info
-
-    race_data.append({'state': state, 'total': total, 'white': white, 'black': black, 'hispanic': hispanic, 'asian': asian, 'nhopi': nhopi, 'aian': aian, 'other': other})
-
-race_field_names = ['state', 'total', 'white', 'black', 'hispanic', 'asian', 'nhopi', 'aian', 'other']
-
-with open(BASE_DIR / '../data/scrape_data/race.csv', 'w') as file: 
-    writer = csv.DictWriter(file, fieldnames = race_field_names) 
-    writer.writeheader()
-    writer.writerows(race_data)
-
-##### AGE
-age_data = []
-
-for state_info in age_dict['data'][2:]:
-    state, total, age19_25, age26_34, age35_54, age55_64 = state_info
-
-    age_data.append({'state': state, 'total': total, 'age19_25': age19_25, 'age26_34': age26_34, 'age35_54': age35_54, 'age55_64': age55_64})
-
-age_field_names = ['state', 'total', 'age19_25', 'age26_34', 'age35_54', 'age55_64']
-
-with open(BASE_DIR / '../data/scrape_data/age.csv', 'w') as file: 
-    writer = csv.DictWriter(file, fieldnames = age_field_names) 
-    writer.writeheader()
-    writer.writerows(age_data)
-
-##### FPL
-fpl_data = []
-
-for state_info in fpl_dict['data'][2:]:
-    state, total, fplless_100, fpl100_199, fpl200_399, fplmore_400 = state_info
-
-    fpl_data.append({'state': state, 'total': total, 'fplless_100': fplless_100, 'fpl100_199': fpl100_199, 'fpl200_399': fpl200_399, 'fplmore_400': fplmore_400})
-
-poverty_field_names = ['state', 'total', 'fplless_100', 'fpl100_199', 'fpl200_399', 'fplmore_400']
-
-with open(BASE_DIR / '../data/scrape_data/poverty.csv', 'w') as file: 
-    writer = csv.DictWriter(file, fieldnames = poverty_field_names) 
-    writer.writeheader()
-    writer.writerows(fpl_data)
-
-##### Median Weekly Earnings
-earnings_data = []
-
-for state_info in earnings_dict['data'][2:]:
-    state, women_weekly, men_weekly, ratio = state_info
-
-    earnings_data.append({'state': state, 'women_weekly': women_weekly, 'men_weekly': men_weekly, 'ratio': ratio})
-
-earnings_field_names = ['state', 'women_weekly', 'men_weekly', 'ratio']
-
-with open(BASE_DIR / '../data/scrape_data/earnings.csv', 'w') as file: 
-    writer = csv.DictWriter(file, fieldnames = earnings_field_names) 
-    writer.writeheader()
-    writer.writerows(earnings_data)
+run_scrapers(DATA_SOURCES)
