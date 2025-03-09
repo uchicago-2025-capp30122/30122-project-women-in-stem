@@ -2,19 +2,15 @@ from pathlib import Path
 from mortality.utils import STATE_ABBREVIATIONS
 import pandas as pd
 
+'''In this file, we are using the scraped data from the KFF website, and we are 
+merging a few columns for our map. 
 
-# add state abbrevations as a column from utils import
+This merge uses the state column as the unique identifier, to ensure that we are
+matching the data correctly, across csv files. 
 
-# columns:
-# m
-
-# Columns:
-
-# State
-# kff_maternal_mortality "Maternal Mortality Rate per 100,000 live Births"
-# kff_coverage Uninsured (remove % and divide by 100)
-# kff_earnings women weekly (remove $)
-# kff_cesarean cesarean
+During the merge, a few cleaning steps were taking, to ensure the data is legible
+and consisten when presented in the map. 
+'''
 
 # paths to the files we are merging
 maternal_mortality_path = Path(__file__).parent.parent.joinpath(
