@@ -28,12 +28,13 @@ def load_data(file, abortion):
                       "22 weeks LMP", "24 weeks LMP", "3rd trimester"]
         
         df['sort_order'] = df['Statutory Limit on Abortions'].apply(lambda x: sort_order.index(x) if x in sort_order else len(sort_order))
-        df = df.sort_values(by= 'sort_order')
+        df = df.sort_values(by= 'sort_order').drop('sort_order', axis=1)
     
     else:
         df = df[['state', 'abbrev', 'deaths', 'lower', 'upper']]
         df = df.sort_values(by=['lower'], ascending=False)
-        df.columns = ['State', 'Abbreviation', 'Deaths', 'Lower Estimate', 'Upper Estimate']
+        df = df.drop('lower', axis=1).drop('upper', axis=1)
+        df.columns = ['State', 'Abbreviation', 'Deaths']
 
     return df
 
@@ -44,10 +45,13 @@ def map_mortalities():
     df = load_data(DEATHS, False)
 
     fig = px.choropleth(locations= 'Abbreviation', locationmode="USA-states", scope="usa",
-                        color = 'Deaths', hover_data= 'State',
+                        color = 'Deaths', 
+                        custom_data= ['State', 'Deaths'],
                         color_discrete_sequence = ["#084594", "#4292c6", "#9ecae1", "#c6dbef"],
                         title = 'Deaths per 100,000 female population by state',
                         data_frame=df)
+
+    fig.update_traces(hovertemplate="<b>State:</b> %{customdata[0]}<br><b>Deaths:</b> %{customdata[1]}<extra></extra>")
     
     return fig
 
@@ -59,30 +63,31 @@ def map_abortion_laws():
     df = load_data(ABORTION_LAWS, True)
 
     fig = px.choropleth(locations = 'Abbreviation', locationmode="USA-states", scope="usa",
-                        color = 'Statutory Limit on Abortions', hover_data = 'Location',
-                        color_discrete_sequence = ["#D95319", "#F2801E", "#FBAF5F", "#D8D8D8", "#A3D0F2", "#5AB4F2", "#1E69D2", "#00298C"],
+                        color = 'Statutory Limit on Abortions',
+                        custom_data=['Location', 'Statutory Limit on Abortions'],
+                        color_discrete_sequence = ['#D95319', '#F2801E', '#A3D0F2', '#5AB4F2', '#3A9BE0', '#1E69D2', '#0045A2', '#001A70'],
                         title = "Statutory limit on abortions by state",
                         data_frame = df)
+    
+    fig.update_traces(hovertemplate="<b>State:</b> %{customdata[0]}<br><b>Limit:</b> %{customdata[1]}<extra></extra>")
     
     return fig
 
 def run_app():
     """ 
-    Using dash, display maps
+    Using dash, display maps, table
     """
-    mortality_map = map_mortalities()
-    mortality_data = load_data(DEATHS, False)
-
-    abortion_map = map_abortion_laws()
-    abortion_data = load_data(ABORTION_LAWS, True)
 
     app = Dash()
     app.layout = html.Div([
-        html.H1("Analysis of maternal mortality rates and abortion legislation"),
+        html.H1("Analysis of Maternal Mortality Rates and Abortion Legislation", 
+                style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
         html.Hr(),
-        dcc.RadioItems(options=["Statutory Limits on Abortion", "Maternal Mortality Rates"], value= 'Maternal Mortality Rates', id="map_select"),
-        dcc.Graph(figure= {}, id='map')
-        #dash_table.DataTable(data=mortality_data.to_dict('records'), page_size=10)
+        html.I("Please select the map and data you would like to view", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
+        dcc.RadioItems(options=["Maternal Mortality Rates", "Statutory Limits on Abortion"], 
+                       value= 'Maternal Mortality Rates', id="map_select"),
+        dcc.Graph(figure= {}, id='map'),
+        dash_table.DataTable(data= [], page_size=10, id='table')
     ])
 
     @callback(
@@ -91,8 +96,17 @@ def run_app():
     )
     def update_map(map):
         if map == 'Maternal Mortality Rates':
-            return mortality_map
-        return abortion_map
+            return map_mortalities()
+        return map_abortion_laws()
+    
+    @callback(
+        Output(component_id='table', component_property='data'),
+        Input(component_id='map_select', component_property='value')
+    )
+    def update_table(data):
+        if data == 'Maternal Mortality Rates':
+            return load_data(DEATHS, False).to_dict('records')
+        return load_data(ABORTION_LAWS, True).to_dict('records')
 
 
     app.run_server(debug=True, use_reloader=False)
