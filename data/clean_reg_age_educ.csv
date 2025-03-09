@@ -1,121 +1,121 @@
 region,race,education,ten_year_age_groups,deaths,mortality_rate,mortality_binary
-Northeast,White,9th through 12th grade with no diploma,25-34,12,0.002,1
-Northeast,White,9th through 12th grade with no diploma,35-44,17,0.002,1
-Northeast,Black or African American,High school graduate or GED completed,15-24,17,0.002,1
-Northeast,Black or African American,High school graduate or GED completed,25-34,45,0.006,1
-Northeast,Black or African American,High school graduate or GED completed,35-44,32,0.004,1
-Northeast,White,High school graduate or GED completed,15-24,28,0.004,1
-Northeast,White,High school graduate or GED completed,25-34,56,0.008,1
-Northeast,White,High school graduate or GED completed,35-44,48,0.007,1
-Northeast,Black or African American,"Some college credit, but not a degree",25-34,12,0.002,1
-Northeast,Black or African American,"Some college credit, but not a degree",35-44,14,0.002,1
-Northeast,White,"Some college credit, but not a degree",25-34,22,0.003,1
-Northeast,White,"Some college credit, but not a degree",35-44,15,0.002,1
-Northeast,Black or African American,"Associate degree (AA,AS)",25-34,10,0.001,1
-Northeast,White,"Associate degree (AA,AS)",25-34,12,0.002,1
-Northeast,White,"Associate degree (AA,AS)",35-44,11,0.001,1
-Northeast,Black or African American,"Bachelor's degree (BA, AB, BS)",25-34,10,0.001,1
-Northeast,White,"Bachelor's degree (BA, AB, BS)",25-34,18,0.002,1
-Northeast,White,"Bachelor's degree (BA, AB, BS)",35-44,29,0.004,1
-Northeast,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,15,0.002,1
-Northeast,Asian,unknown,25-34,10,0.001,1
-Northeast,Black or African American,unknown,15-24,19,0.003,1
-Northeast,Black or African American,unknown,25-34,73,0.01,1
+Northeast,White,9th through 12th grade with no diploma,25-34,12,0.002,0
+Northeast,White,9th through 12th grade with no diploma,35-44,17,0.002,0
+Northeast,Black or African American,High school graduate or GED completed,15-24,17,0.002,0
+Northeast,Black or African American,High school graduate or GED completed,25-34,45,0.006,0
+Northeast,Black or African American,High school graduate or GED completed,35-44,32,0.004,0
+Northeast,White,High school graduate or GED completed,15-24,28,0.004,0
+Northeast,White,High school graduate or GED completed,25-34,56,0.008,0
+Northeast,White,High school graduate or GED completed,35-44,48,0.007,0
+Northeast,Black or African American,"Some college credit, but not a degree",25-34,12,0.002,0
+Northeast,Black or African American,"Some college credit, but not a degree",35-44,14,0.002,0
+Northeast,White,"Some college credit, but not a degree",25-34,22,0.003,0
+Northeast,White,"Some college credit, but not a degree",35-44,15,0.002,0
+Northeast,Black or African American,"Associate degree (AA,AS)",25-34,10,0.001,0
+Northeast,White,"Associate degree (AA,AS)",25-34,12,0.002,0
+Northeast,White,"Associate degree (AA,AS)",35-44,11,0.001,0
+Northeast,Black or African American,"Bachelor's degree (BA, AB, BS)",25-34,10,0.001,0
+Northeast,White,"Bachelor's degree (BA, AB, BS)",25-34,18,0.002,0
+Northeast,White,"Bachelor's degree (BA, AB, BS)",35-44,29,0.004,0
+Northeast,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,15,0.002,0
+Northeast,Asian,unknown,25-34,10,0.001,0
+Northeast,Black or African American,unknown,15-24,19,0.003,0
+Northeast,Black or African American,unknown,25-34,73,0.01,0
 Northeast,Black or African American,unknown,35-44,88,0.012,1
-Northeast,White,unknown,15-24,37,0.005,1
+Northeast,White,unknown,15-24,37,0.005,0
 Northeast,White,unknown,25-34,128,0.017,1
 Northeast,White,unknown,35-44,115,0.016,1
-Midwest,White,8th grade or less,35-44,12,0.002,1
-Midwest,Black or African American,9th through 12th grade with no diploma,25-34,17,0.002,1
-Midwest,White,9th through 12th grade with no diploma,15-24,10,0.001,1
-Midwest,White,9th through 12th grade with no diploma,25-34,22,0.003,1
-Midwest,White,9th through 12th grade with no diploma,35-44,17,0.002,1
-Midwest,Black or African American,High school graduate or GED completed,15-24,14,0.002,1
-Midwest,Black or African American,High school graduate or GED completed,25-34,62,0.008,1
-Midwest,Black or African American,High school graduate or GED completed,35-44,26,0.004,1
-Midwest,White,High school graduate or GED completed,15-24,25,0.003,1
+Midwest,White,8th grade or less,35-44,12,0.002,0
+Midwest,Black or African American,9th through 12th grade with no diploma,25-34,17,0.002,0
+Midwest,White,9th through 12th grade with no diploma,15-24,10,0.001,0
+Midwest,White,9th through 12th grade with no diploma,25-34,22,0.003,0
+Midwest,White,9th through 12th grade with no diploma,35-44,17,0.002,0
+Midwest,Black or African American,High school graduate or GED completed,15-24,14,0.002,0
+Midwest,Black or African American,High school graduate or GED completed,25-34,62,0.008,0
+Midwest,Black or African American,High school graduate or GED completed,35-44,26,0.004,0
+Midwest,White,High school graduate or GED completed,15-24,25,0.003,0
 Midwest,White,High school graduate or GED completed,25-34,86,0.012,1
-Midwest,White,High school graduate or GED completed,35-44,74,0.01,1
-Midwest,Black or African American,"Some college credit, but not a degree",25-34,24,0.003,1
-Midwest,Black or African American,"Some college credit, but not a degree",35-44,17,0.002,1
-Midwest,White,"Some college credit, but not a degree",15-24,11,0.001,1
-Midwest,White,"Some college credit, but not a degree",25-34,50,0.007,1
-Midwest,White,"Some college credit, but not a degree",35-44,18,0.002,1
-Midwest,White,"Associate degree (AA,AS)",25-34,20,0.003,1
-Midwest,White,"Associate degree (AA,AS)",35-44,19,0.003,1
-Midwest,White,"Bachelor's degree (BA, AB, BS)",25-34,40,0.005,1
-Midwest,White,"Bachelor's degree (BA, AB, BS)",35-44,29,0.004,1
-Midwest,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,14,0.002,1
-Midwest,Black or African American,unknown,15-24,25,0.003,1
+Midwest,White,High school graduate or GED completed,35-44,74,0.01,0
+Midwest,Black or African American,"Some college credit, but not a degree",25-34,24,0.003,0
+Midwest,Black or African American,"Some college credit, but not a degree",35-44,17,0.002,0
+Midwest,White,"Some college credit, but not a degree",15-24,11,0.001,0
+Midwest,White,"Some college credit, but not a degree",25-34,50,0.007,0
+Midwest,White,"Some college credit, but not a degree",35-44,18,0.002,0
+Midwest,White,"Associate degree (AA,AS)",25-34,20,0.003,0
+Midwest,White,"Associate degree (AA,AS)",35-44,19,0.003,0
+Midwest,White,"Bachelor's degree (BA, AB, BS)",25-34,40,0.005,0
+Midwest,White,"Bachelor's degree (BA, AB, BS)",35-44,29,0.004,0
+Midwest,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,14,0.002,0
+Midwest,Black or African American,unknown,15-24,25,0.003,0
 Midwest,Black or African American,unknown,25-34,80,0.011,1
-Midwest,Black or African American,unknown,35-44,55,0.007,1
-Midwest,White,unknown,15-24,64,0.009,1
+Midwest,Black or African American,unknown,35-44,55,0.007,0
+Midwest,White,unknown,15-24,64,0.009,0
 Midwest,White,unknown,25-34,208,0.028,1
 Midwest,White,unknown,35-44,162,0.022,1
-South,White,8th grade or less,25-34,16,0.002,1
-South,White,8th grade or less,35-44,31,0.004,1
-South,Black or African American,9th through 12th grade with no diploma,15-24,31,0.004,1
-South,Black or African American,9th through 12th grade with no diploma,25-34,40,0.005,1
-South,Black or African American,9th through 12th grade with no diploma,35-44,31,0.004,1
-South,White,9th through 12th grade with no diploma,15-24,27,0.004,1
-South,White,9th through 12th grade with no diploma,25-34,62,0.008,1
-South,White,9th through 12th grade with no diploma,35-44,54,0.007,1
-South,Black or African American,High school graduate or GED completed,15-24,64,0.009,1
+South,White,8th grade or less,25-34,16,0.002,0
+South,White,8th grade or less,35-44,31,0.004,0
+South,Black or African American,9th through 12th grade with no diploma,15-24,31,0.004,0
+South,Black or African American,9th through 12th grade with no diploma,25-34,40,0.005,0
+South,Black or African American,9th through 12th grade with no diploma,35-44,31,0.004,0
+South,White,9th through 12th grade with no diploma,15-24,27,0.004,0
+South,White,9th through 12th grade with no diploma,25-34,62,0.008,0
+South,White,9th through 12th grade with no diploma,35-44,54,0.007,0
+South,Black or African American,High school graduate or GED completed,15-24,64,0.009,0
 South,Black or African American,High school graduate or GED completed,25-34,169,0.023,1
 South,Black or African American,High school graduate or GED completed,35-44,119,0.016,1
-South,White,High school graduate or GED completed,15-24,75,0.01,1
+South,White,High school graduate or GED completed,15-24,75,0.01,0
 South,White,High school graduate or GED completed,25-34,224,0.03,1
 South,White,High school graduate or GED completed,35-44,157,0.021,1
-South,Black or African American,"Some college credit, but not a degree",15-24,24,0.003,1
+South,Black or African American,"Some college credit, but not a degree",15-24,24,0.003,0
 South,Black or African American,"Some college credit, but not a degree",25-34,82,0.011,1
-South,Black or African American,"Some college credit, but not a degree",35-44,45,0.006,1
-South,White,"Some college credit, but not a degree",15-24,14,0.002,1
+South,Black or African American,"Some college credit, but not a degree",35-44,45,0.006,0
+South,White,"Some college credit, but not a degree",15-24,14,0.002,0
 South,White,"Some college credit, but not a degree",25-34,90,0.012,1
-South,White,"Some college credit, but not a degree",35-44,60,0.008,1
-South,Black or African American,"Associate degree (AA,AS)",25-34,35,0.005,1
-South,Black or African American,"Associate degree (AA,AS)",35-44,29,0.004,1
-South,White,"Associate degree (AA,AS)",15-24,11,0.001,1
-South,White,"Associate degree (AA,AS)",25-34,50,0.007,1
-South,White,"Associate degree (AA,AS)",35-44,40,0.005,1
-South,Black or African American,"Bachelor's degree (BA, AB, BS)",25-34,42,0.006,1
-South,Black or African American,"Bachelor's degree (BA, AB, BS)",35-44,36,0.005,1
-South,White,"Bachelor's degree (BA, AB, BS)",25-34,62,0.008,1
-South,White,"Bachelor's degree (BA, AB, BS)",35-44,58,0.008,1
-South,Black or African American,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",25-34,14,0.002,1
-South,Black or African American,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,22,0.003,1
-South,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",25-34,31,0.004,1
-South,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,24,0.003,1
-South,Asian,unknown,25-34,14,0.002,1
-South,Asian,unknown,35-44,29,0.004,1
+South,White,"Some college credit, but not a degree",35-44,60,0.008,0
+South,Black or African American,"Associate degree (AA,AS)",25-34,35,0.005,0
+South,Black or African American,"Associate degree (AA,AS)",35-44,29,0.004,0
+South,White,"Associate degree (AA,AS)",15-24,11,0.001,0
+South,White,"Associate degree (AA,AS)",25-34,50,0.007,0
+South,White,"Associate degree (AA,AS)",35-44,40,0.005,0
+South,Black or African American,"Bachelor's degree (BA, AB, BS)",25-34,42,0.006,0
+South,Black or African American,"Bachelor's degree (BA, AB, BS)",35-44,36,0.005,0
+South,White,"Bachelor's degree (BA, AB, BS)",25-34,62,0.008,0
+South,White,"Bachelor's degree (BA, AB, BS)",35-44,58,0.008,0
+South,Black or African American,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",25-34,14,0.002,0
+South,Black or African American,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,22,0.003,0
+South,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",25-34,31,0.004,0
+South,White,"Master's degree (MA, MS, MEng, MEd, MSW, MBA)",35-44,24,0.003,0
+South,Asian,unknown,25-34,14,0.002,0
+South,Asian,unknown,35-44,29,0.004,0
 South,Black or African American,unknown,15-24,105,0.014,1
 South,Black or African American,unknown,25-34,319,0.043,1
 South,Black or African American,unknown,35-44,251,0.034,1
 South,White,unknown,15-24,139,0.019,1
 South,White,unknown,25-34,403,0.055,1
 South,White,unknown,35-44,310,0.042,1
-South,White,unknown,45-54,11,0.001,1
-West,White,9th through 12th grade with no diploma,15-24,17,0.002,1
-West,White,9th through 12th grade with no diploma,25-34,25,0.003,1
-West,White,9th through 12th grade with no diploma,35-44,23,0.003,1
-West,Black or African American,High school graduate or GED completed,25-34,12,0.002,1
-West,White,High school graduate or GED completed,15-24,27,0.004,1
-West,White,High school graduate or GED completed,25-34,75,0.01,1
-West,White,High school graduate or GED completed,35-44,46,0.006,1
-West,Black or African American,"Some college credit, but not a degree",35-44,10,0.001,1
-West,White,"Some college credit, but not a degree",25-34,50,0.007,1
-West,White,"Some college credit, but not a degree",35-44,29,0.004,1
-West,White,"Associate degree (AA,AS)",25-34,19,0.003,1
-West,White,"Associate degree (AA,AS)",35-44,20,0.003,1
-West,Asian,"Bachelor's degree (BA, AB, BS)",35-44,10,0.001,1
-West,White,"Bachelor's degree (BA, AB, BS)",25-34,32,0.004,1
-West,White,"Bachelor's degree (BA, AB, BS)",35-44,13,0.002,1
-West,American Indian or Alaska Native,unknown,25-34,23,0.003,1
-West,Asian,unknown,25-34,18,0.002,1
-West,Asian,unknown,35-44,27,0.004,1
-West,Black or African American,unknown,25-34,36,0.005,1
-West,Black or African American,unknown,35-44,28,0.004,1
-West,White,unknown,15-24,59,0.008,1
+South,White,unknown,45-54,11,0.001,0
+West,White,9th through 12th grade with no diploma,15-24,17,0.002,0
+West,White,9th through 12th grade with no diploma,25-34,25,0.003,0
+West,White,9th through 12th grade with no diploma,35-44,23,0.003,0
+West,Black or African American,High school graduate or GED completed,25-34,12,0.002,0
+West,White,High school graduate or GED completed,15-24,27,0.004,0
+West,White,High school graduate or GED completed,25-34,75,0.01,0
+West,White,High school graduate or GED completed,35-44,46,0.006,0
+West,Black or African American,"Some college credit, but not a degree",35-44,10,0.001,0
+West,White,"Some college credit, but not a degree",25-34,50,0.007,0
+West,White,"Some college credit, but not a degree",35-44,29,0.004,0
+West,White,"Associate degree (AA,AS)",25-34,19,0.003,0
+West,White,"Associate degree (AA,AS)",35-44,20,0.003,0
+West,Asian,"Bachelor's degree (BA, AB, BS)",35-44,10,0.001,0
+West,White,"Bachelor's degree (BA, AB, BS)",25-34,32,0.004,0
+West,White,"Bachelor's degree (BA, AB, BS)",35-44,13,0.002,0
+West,American Indian or Alaska Native,unknown,25-34,23,0.003,0
+West,Asian,unknown,25-34,18,0.002,0
+West,Asian,unknown,35-44,27,0.004,0
+West,Black or African American,unknown,25-34,36,0.005,0
+West,Black or African American,unknown,35-44,28,0.004,0
+West,White,unknown,15-24,59,0.008,0
 West,White,unknown,25-34,187,0.025,1
 West,White,unknown,35-44,139,0.019,1
-West,White,unknown,45-54,10,0.001,1
-West,More than one race,unknown,25-34,14,0.002,1
+West,White,unknown,45-54,10,0.001,0
+West,More than one race,unknown,25-34,14,0.002,0
