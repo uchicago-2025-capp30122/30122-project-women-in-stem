@@ -23,9 +23,10 @@ def get_data():
     """
     file = Path(__file__).parent.parent.joinpath("data/clean_reg_age_educ.csv")
     mortality_data = pd.read_csv(file)
-    mortality_data = mortality_data[mortality_data['race'] != "american indian or alaska native"]
-    mortality_data['mortality_rate'] = mortality_data['percent_total_deaths']/100
-    mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > 0.01).astype(int)
+    mortality_data = mortality_data[mortality_data['race'] != "American Indian or Alaska Native"]
+
+    # mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > 0.005).astype(int)
+
 
     return mortality_data
 
@@ -61,7 +62,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     mortality_data = get_data()
 
     full_logit_model, _ = full_model(mortality_data)
-    # print(full_logit_model.summary())
+    print(full_logit_model.summary())
 
     inputs = pd.DataFrame({
         INDEPENDENT_VAR[0] : [region],
@@ -71,13 +72,28 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     })
     
     user_mortality_r = full_logit_model.predict(inputs)
+
     return user_mortality_r.values[0]
 
 def user_input_dash():
+    """
+    Create Dash Interaction in the web browser consists of two components:
+    the predictive model and the data visualization. Both components will show
+    the output once user make selections
+
+    Paremeters: 
+        None
+    
+    Returns:
+        None
+    """
     mortalty_data = get_data()
 
     app = Dash()
+
     app.layout = html.Div([
+        
+        #first component (predictive model)
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
         html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
@@ -97,6 +113,7 @@ def user_input_dash():
         html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
 
+        #second component (visualization)
         html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
         html.Div([
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var1'),
@@ -104,10 +121,12 @@ def user_input_dash():
         html.Div([
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var2'),
         ]),
+
         dcc.Graph(id='boxplot')
 
     ])
 
+    #create the predicted mortality rate based on user inputs
     @callback(
         Output(component_id = 'header-mortality', component_property = 'children'),
         Output(component_id = 'output-mortality', component_property = 'children'),
@@ -127,13 +146,14 @@ def user_input_dash():
         else:
             return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_result}"
 
+    #create data exploration visulization based on user inputs
     @callback(
         Output(component_id = 'boxplot', component_property = 'figure'),
         Input(component_id = 'indepdent-var1', component_property = 'value'), 
         Input(component_id = 'indepdent-var2', component_property = 'value')
     )
     def update_boxplot(independent_var1, independent_var2):
-        fig = px.box(mortalty_data, x=independent_var1, y="percent_total_deaths", color=independent_var2)
+        fig = px.box(mortalty_data, x=independent_var1, y="mortality_rate", color=independent_var2)
         fig.update_layout(title=f"Box Plot of Maternal Mortality Rates across {independent_var1} and {independent_var2}", 
                           yaxis_title = "Maternal Mortality Rates")
         
