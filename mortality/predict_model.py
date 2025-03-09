@@ -91,6 +91,10 @@ def user_input_dash():
 
     app.layout = html.Div([
         
+        html.Div([
+            html.Img(src='/assets/women_stem_banner.png', style={'width': '100%', 'height': 'auto'}),
+        ], style={'textAlign': 'center', 'padding': '20px'}),
+
         #first component (predictive model)
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
