@@ -19,7 +19,8 @@ with open(region_path_write, 'w', newline='', encoding='utf-8') as csv_file:
     for row in content:
         mortality_rate = (float(row['% of Total Deaths'].strip().lower()[:3]))
         
-        if mortality_rate > 0.0: 
+        #creates mortality rate into a binary variable
+        if mortality_rate > 0.001: 
             mortality_binary = 1
         else: 
             mortality_binary = int(0)
