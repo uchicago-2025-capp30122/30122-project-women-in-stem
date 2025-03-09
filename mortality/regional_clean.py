@@ -1,6 +1,12 @@
 import csv
 from pathlib import Path
 
+'''
+This file is responsible for cleaning the `region_age_educ_race.csv` file. It ensures the data 
+is properly formatted for the predictive model output while simultaneously cleaning the data 
+types to make them compatible with the regression model used for prediction.
+'''
+
 #Cleaning Regional data
 region_path_open = Path(__file__).parent.parent.joinpath("data/downloaded_data/region_age_educ_race.csv")
 region_path_write = Path(__file__).parent.parent.joinpath("data/clean_reg_age_educ.csv")
