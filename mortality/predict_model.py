@@ -110,7 +110,10 @@ def user_input_dash():
 
         html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
-
+        
+        html.Div(id='shadow_image', children=[
+        html.Img(src='/assets/calculate.gif', style={'width': '30%', 'height': 'auto'})
+    ], style={'textAlign': 'center', 'marginTop': '20px'}),
 
         #second component (visualization)
         html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
