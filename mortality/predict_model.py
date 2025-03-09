@@ -112,7 +112,7 @@ def user_input_dash():
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
         
         html.Div(id='shadow_image', children=[
-        html.Img(src='/assets/calculate.gif', style={'width': '30%', 'height': 'auto'})
+        html.Img(src='/assets/crazy calculator.gif', style={'width': '20%', 'height': 'auto'})
     ], style={'textAlign': 'center', 'marginTop': '20px'}),
 
         #second component (visualization)
@@ -156,7 +156,7 @@ def user_input_dash():
         else:
             return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_result}"
 
-    #create data exploration visulization based on user inputs
+    #create data expldoration visulization based on user inputs
     @callback(
         Output(component_id = 'boxplot', component_property = 'figure'),
         Input(component_id = 'indepdent-var1', component_property = 'value'), 
@@ -164,7 +164,7 @@ def user_input_dash():
     )
     def update_boxplot(independent_var1, independent_var2):
         fig = px.box(mortalty_data, x=independent_var1, y="mortality_rate", color=independent_var2)
-        fig.update_layout(title=f"Box Plot of Maternal Mortality Rates across {independent_var1} and {independent_var2}", 
+        fig.update_layout(title=f"Box Plot of Maternal Mortality Rates", 
                           yaxis_title = "Maternal Mortality Rates")
         
         return fig
