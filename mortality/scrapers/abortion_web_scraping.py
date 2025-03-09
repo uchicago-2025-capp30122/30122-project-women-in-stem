@@ -17,16 +17,19 @@ def run_abortion_policy_scraper():
     html.raise_for_status()
     root = lxml.html.fromstring(html.text)
 
-    rawdata_json = root.cssselect('#content script[type="text/javascript"]')[0].text
+    # Extract where the data is from the json text
+    rawdata = root.cssselect('#content script[type="text/javascript"]')[0].text
 
-    rawdata_json_clean = rawdata_json[57 : len(rawdata_json) - 3]
-
-    rawdata_dict = json.loads(rawdata_json_clean)
-
+    # Delete unnecessary characters so that the json can be loaded into a dict
+    rawdata_clean = rawdata[57 : len(rawdata) - 3]
+    rawdata_dict = json.loads(rawdata_clean)
+    # Extract the data, which is a list of lists 
     rawdata_list = rawdata_dict["gdocsObject"]
 
     state_data = []
 
+    # In this for loop, state_info is a list with the state name at the 0 index,
+    # and other information in the subsequent indexes.
     for state_info in rawdata_list[0][1]:
         if (
             state_info[0] == "District of Columbia"
@@ -70,6 +73,7 @@ def run_abortion_policy_scraper():
         "Legal Standard for Health/Life Exception",
     ]
 
+    # Write the list of dictionaries to a csv
     with open(BASE_DIR / "data/scrape_data/abortion.csv", "w") as file:
         writer = csv.DictWriter(file, fieldnames=field_names)
         writer.writeheader()

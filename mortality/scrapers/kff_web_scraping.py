@@ -45,13 +45,19 @@ def extract_state_info(raw_data: list, variables: list, output_file: str):
     """
     data = []
 
+    # raw_data is a list of lists, where each list is a row of data for a state.
+    # In this for loop, state_info is a list with the state name at the 0 index,
+    # and other information in the subsequent indexes.
     for state_info in raw_data:
+        # For each state's info, write the data for each row into a dictionary
         row = {variable: None for variable in variables}
         for i, key in enumerate(row.keys()):
             row[key] = state_info[i]
 
+        # Add dictionary with state info into data list
         data.append(row)
 
+    # Write the list of dictionaries to a csv
     with open(BASE_DIR / output_file, "w") as file:
         writer = csv.DictWriter(file, fieldnames=variables)
         writer.writeheader()
@@ -66,6 +72,7 @@ def run_kff_scrapers(data_sources: dict):
         data_sources: The dictionary that contains all of the necessary
             information needed to scrape all of the data sources.
     """
+    # Unpack the important information for each data source to be scraped
     for url, variables, start_index, output_file in data_sources.values():
         info = get_json_from_html(url)
         extract_state_info(info["data"][start_index:], variables, output_file)
