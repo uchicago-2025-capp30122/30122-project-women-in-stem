@@ -25,8 +25,6 @@ def get_data():
     mortality_data = pd.read_csv(file)
     mortality_data = mortality_data[mortality_data['race'] != "American Indian or Alaska Native"]
 
-    # mortality_data['mortality_binary'] = (mortality_data['mortality_rate'] > 0.005).astype(int)
-
 
     return mortality_data
 
