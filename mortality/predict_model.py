@@ -90,15 +90,11 @@ def user_input_dash():
     app = Dash()
 
     app.layout = html.Div([
-        
-        html.Div([
-            html.Img(src='/assets/women_stem_banner.png', style={'width': '100%', 'height': 'auto'}),
-        ], style={'textAlign': 'center', 'padding': '20px'}),
 
         #first component (predictive model)
-        html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
+        html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
-        html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
+        html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'textAlign': 'left', 'fontWeight': 'bold', 'marginBottom': '20px', 'color': '#5b33ff'}),
         html.Div([
             dcc.Dropdown(mortalty_data['region'].unique(), placeholder="Select State Region...", id='region'),
         ]),
@@ -115,6 +111,7 @@ def user_input_dash():
         html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
 
+
         #second component (visualization)
         html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
         html.Div([
@@ -124,9 +121,17 @@ def user_input_dash():
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var2'),
         ]),
 
-        dcc.Graph(id='boxplot')
+        dcc.Graph(id='boxplot'),
 
-    ])
+         html.Div([
+            html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
+        ], style={'textAlign': 'center', 'padding': '20px'}),
+
+    ], style={
+        'background': 'linear-gradient(to right, #fabae2, #f0f8ff)',  # gradient background
+        'height': 'auto',  
+        'padding': '20px'
+    })
 
     #create the predicted mortality rate based on user inputs
     @callback(
