@@ -16,8 +16,8 @@ def test_get_data_is_binary(mortality_df):
     assert 0 in unique_value
 
 def test_user_prediction_wihtin_bound(mortality_df):
-    assert user_prediction('northeast', 'white', 'unknown', '15-24') <= 1
-    assert user_prediction('northeast', 'white', 'unknown', '15-24') >= 0
+    assert user_prediction('Northeast', 'White', 'unknown', '15-24') <= 1
+    assert user_prediction('Northeast', 'White', 'unknown', '15-24') >= 0
 
-    assert user_prediction('south', 'asian', '8th grade or less', '35-44') <= 1
-    assert user_prediction('south', 'asian', '8th grade or less', '35-44') >= 0
+    assert user_prediction('South', 'Asian', '8th grade or less', '35-44') <= 1
+    assert user_prediction('South', 'Asian', '8th grade or less', '35-44') >= 0
