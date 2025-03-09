@@ -3,13 +3,7 @@ from pathlib import Path
 import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 
-# # From this data source, we aim to use the summary statistics provided by the 
-# # second green map. This data lives in a CSV file, composed of 51 rows, 
-# # representing all 50 states and the District of Columbia, and 5 columns. 
-# # We plan to use the column labelled as "0–18.6" which refers to the maternal 
-# # mortality rates per 100,000 live births.
-
-DEATHS = Path(__file__).parent.parent.joinpath("data/scrape_data/deaths.csv")
+MERGED = Path(__file__).parent.parent.joinpath("data/merged_kff.csv")
 ABORTION_LAWS = Path(__file__).parent.parent.joinpath("data/scrape_data/abortion.csv")
 
 def load_data(file, abortion):
@@ -31,10 +25,11 @@ def load_data(file, abortion):
         df = df.sort_values(by= 'sort_order').drop('sort_order', axis=1)
     
     else:
-        df = df[['state', 'abbrev', 'deaths', 'lower', 'upper']]
-        df = df.sort_values(by=['lower'], ascending=False)
-        df = df.drop('lower', axis=1).drop('upper', axis=1)
-        df.columns = ['State', 'Abbreviation', 'Deaths']
+        df = df.sort_values(by=['mortality'], ascending=False)
+        df.columns = ['State', 'Maternal Mortality Rate per 100,000 Live Births',
+                       'Percent Uninsured', "Women's Average Weekly Earnings", 
+                       "Ratio of Women's Earnings to Men's Earnings", "Percent Cesarean Births",
+                       'Abbreviation']
 
     return df
 
@@ -42,16 +37,16 @@ def map_mortalities():
     """
     Creates a chloropleth map by state of maternal mortalities
     """
-    df = load_data(DEATHS, False)
+    df = load_data(MERGED, False).dropna()
 
     fig = px.choropleth(locations= 'Abbreviation', locationmode="USA-states", scope="usa",
-                        color = 'Deaths', 
-                        custom_data= ['State', 'Deaths'],
-                        color_discrete_sequence = ["#084594", "#4292c6", "#9ecae1", "#c6dbef"],
-                        title = 'Deaths per 100,000 female population by state',
+                        color = 'Maternal Mortality Rate per 100,000 Live Births', 
+                        custom_data= ['State', 'Maternal Mortality Rate per 100,000 Live Births'],
+                        color_continuous_scale= px.colors.sequential.YlOrBr,
+                        title = 'Maternal Mortality Rate per 100,000 Live Births by State',
                         data_frame=df)
 
-    fig.update_traces(hovertemplate="<b>State:</b> %{customdata[0]}<br><b>Deaths:</b> %{customdata[1]}<extra></extra>")
+    fig.update_traces(hovertemplate="<b>State:</b> %{customdata[0]}<br><b>Maternal Mortality Rate per 100,000 Live Births:</b> %{customdata[1]}<extra></extra>")
     
     return fig
 
@@ -86,6 +81,7 @@ def run_app():
         html.I("Please select the map and data you would like to view", style={'fontWeight': 'bold', 'marginBottom': '20px'}),
         dcc.RadioItems(options=["Maternal Mortality Rates", "Statutory Limits on Abortion"], 
                        value= 'Maternal Mortality Rates', id="map_select"),
+        html.H4("Note: missing mortality data from 13 states."),
         dcc.Graph(figure= {}, id='map'),
         dash_table.DataTable(data= [], page_size=10, id='table')
     ])
@@ -105,7 +101,7 @@ def run_app():
     )
     def update_table(data):
         if data == 'Maternal Mortality Rates':
-            return load_data(DEATHS, False).to_dict('records')
+            return load_data(MERGED, False).to_dict('records')
         return load_data(ABORTION_LAWS, True).to_dict('records')
 
 

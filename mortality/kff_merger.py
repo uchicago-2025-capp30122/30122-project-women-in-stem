@@ -27,7 +27,7 @@ cesarean_path = Path(__file__).parent.parent.joinpath(
 )
 
 # path we are creating for new csv
-merged_kff = Path(__file__).parent.parent.joinpath("data/scrape_data/merged_kff.csv")
+merged_kff = Path(__file__).parent.parent.joinpath("data/merged_kff.csv")
 
 # loading the csv files
 mortality = pd.read_csv(maternal_mortality_path)
@@ -54,6 +54,17 @@ coverage["Uninsured"] = (
     coverage["Uninsured"].astype(str).str.rstrip("%").astype(float) / 100
 )  # Convert Uninsured to decimal
 
+# cleaning files: cesarean
+cesarean['cesarean'] = (
+    cesarean['cesarean'].astype(str).str.rstrip('%').astype(float) / 100
+) # Convert cesarean to decimal
+
+# cleaning files: mortality
+mortality['Maternal Mortality Rate per 100,000 live Births'] = mortality["Maternal Mortality Rate per 100,000 live Births"].apply(
+    lambda x: None if x == "NR" else x
+)
+mortality['Maternal Mortality Rate per 100,000 live Births'] = mortality["Maternal Mortality Rate per 100,000 live Births"].astype(float)
+
 # extracting specific columns
 mortality = mortality[["state", "Maternal Mortality Rate per 100,000 live Births"]]
 coverage = coverage[["state", "Uninsured"]]
@@ -69,6 +80,13 @@ merged_df = (
 
 # adding the column of abbreviation from dictionary "STATE_ABBREVIATION"
 merged_df["state_abbreviation"] = merged_df["state"].map(STATE_ABBREVIATIONS)
+
+# removing DC and United States rows
+merged_df = merged_df[merged_df['state'] != 'United States']
+merged_df = merged_df[merged_df['state'] != 'District of Columbia']
+
+# change column names
+merged_df.columns = ['state', 'mortality', 'uninsured', 'women_earnings', 'ratio_earnings', 'cesarean', 'abbrev']
 
 # saving the merged data
 merged_df.to_csv(merged_kff, index=False)
