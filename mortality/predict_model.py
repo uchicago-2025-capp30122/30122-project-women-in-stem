@@ -275,6 +275,43 @@ def user_input_dash():
                 ]
             ),
             dcc.Graph(id="boxplot"),
+            html.H3("How to read a Box Plot: ",
+                   style={
+
+                    },
+            ),
+            html.I("A box plot is a graphical representation of dataset distribution:",
+                   style={
+                    "textAlign": "left",
+                    "fontFamily": "Arial, sans-serif",
+                    "marginTop": "20px",
+                    "marginBottom": "2px",
+                    },
+            ),
+            html.P(" - The Box, which contains the middle 50% of the data, represents the interquartile ranges. The bottom of the box represents the first quartile, and the top represents the third quartile. The line inside the box marks the median (midpoint of the dataset)", 
+                   style={
+                    "textAlign": "left",
+                    "fontFamily": "Arial, sans-serif",
+                    "marginTop": "20px",
+                    "marginBottom": "2px",
+                    },
+            ),
+            html.P(" - The Whiskers: These lines extend from the box to the smallest and largest data points within a range. They help visualize the spread of the data.", 
+                   style={
+                    "textAlign": "left",
+                    "fontFamily": "Arial, sans-serif",
+                    "marginTop": "20px",
+                    "marginBottom": "2px",
+                    },
+            ),
+            html.P(" - Outliers: Data points beyond the whiskers are considered outliers, they indicate unusual values in the dataset.", 
+                   style= {
+                    "textAlign": "left",
+                    "fontFamily": "Arial, sans-serif",
+                    "marginTop": "20px",
+                    "marginBottom": "2px",
+                },
+            ),
         ],
         style={
             "background": "linear-gradient(to right, #fabae2, #f0f8ff)",  # gradient background
