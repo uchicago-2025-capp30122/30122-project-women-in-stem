@@ -17,6 +17,8 @@ def main():
     elif sys.argv[1] == "scrape":
         run_kff_scrapers()
         run_abortion_policy_scraper()
+    else:
+        print("Please run the following: uv run python -m mortality map or uv run python -m mortality prediction or uv run python -m mortality scrape")
 
 if __name__ == "__main__":
     main()
