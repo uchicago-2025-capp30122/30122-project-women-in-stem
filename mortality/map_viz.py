@@ -176,7 +176,7 @@ def run_app():
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.I("Note: missing mortality rate data for 13 states.", style={ 'color': '#0000FF'}),
+            html.I("Note: missing mortality rate data for 13 states.", style={ 'fontFamily': 'Arial, sans-serif', 'color': '#0000FF'}),
             # Map and table
             html.Div(
                 [
@@ -196,7 +196,7 @@ def run_app():
             html.Hr(),
             html.P(
                 "Please select the x-axis you would like to visualize.",
-                style={"fontWeight": "bold", "marginBottom": "20px"},
+                style={"fontWeight": "bold", 'fontFamily': 'Arial, sans-serif', "marginBottom": "20px"},
             ),
             dcc.RadioItems(
                 options=[
