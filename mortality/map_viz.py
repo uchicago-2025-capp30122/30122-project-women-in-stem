@@ -156,27 +156,78 @@ def run_app():
     app = Dash()
     app.layout = html.Div(
         [
+            # header
+            html.Div(
+                style={"position": "relative", "textAlign": "center"},
+                children=[
+                    # Background image
+                    html.Img(
+                        src="assets/banner_multiple.png",
+                        style={"width": "100%", "height": "auto"},
+                    ),
+                    # Left text
+                    html.H3(
+                        [
+                            "Women in STEM",
+                            html.Br(),
+                            "CAPP 30122 Project",
+                            html.Br(),
+                            "Winter 2025",
+                        ],
+                        style={
+                            "position": "absolute",
+                            "top": "5%",
+                            "left": "5%",
+                            "color": "black",
+                            "textAlign": "left",
+                            #'fontFamily': 'Arial, sans-serif'
+                            #'font-style': 'italic'
+                        },
+                    ),
+                    # Right text
+                    html.H3(
+                        [
+                            "Click below to see the",
+                            html.Br(),
+                            html.A(
+                                "GitHub repository",
+                                href="https://github.com/uchicago-2025-capp30122/30122-project-women-in-stem",
+                                target="_blank",
+                            ),
+                        ],
+                        style={
+                            "position": "absolute",
+                            "top": "5%",
+                            "right": "5%",
+                            "color": "black",
+                            #'fontFamily': 'Arial, sans-serif'
+                            #'font-style': 'italic'
+                        },
+                    ),
+                ],
+            ),
             # Heading, selectors
             html.H1(
                 "Analysis of Maternal Mortality Rates and Abortion Legislation",
                 style={
-                    "textAlign": "left",
+                    "textAlign": "center",
                     'fontFamily': 'Arial, sans-serif',
                     "fontSize": "32px",
                     "textDecoration": "underline",
                 },
             ),
-            html.Hr(),
+            #html.Hr(),
             html.P(
                 "Please select the map and data you would like to view",
-                style={"fontWeight": "bold", "marginBottom": "20px"},
+                style={"fontWeight": "bold", "marginBottom": "15px",'fontFamily': 'Arial, sans-serif'},
             ),
             dcc.RadioItems(
                 options=["Maternal Mortality Rates", "Statutory Limits on Abortion"],
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.I("Note: missing mortality rate data for 13 states.", style={ 'fontFamily': 'Arial, sans-serif', 'color': '#0000FF'}),
+            html.I("Note: missing mortality rate data for 13 states", 
+                   style={ 'fontFamily': 'Arial, sans-serif', 'color': 'gray', "fontSize": "13px", "marginBottom": "20px", "marginTop": "10px"}),
             # Map and table
             html.Div(
                 [
@@ -188,6 +239,7 @@ def run_app():
                         page_size=10,
                         id="table",
                         style_table={"flex": "1", "overflowX": "auto"},
+                        style_cell={'textAlign': 'center'}
                     ),
                 ],
                 style={"maxWidth": "1200px", "display": "flex", "gap": "20px"},
@@ -196,7 +248,7 @@ def run_app():
             html.Hr(),
             html.P(
                 "Please select the x-axis you would like to visualize.",
-                style={"fontWeight": "bold", 'fontFamily': 'Arial, sans-serif', "marginBottom": "20px"},
+                style={"fontWeight": "bold", 'fontFamily': 'Arial, sans-serif', "marginBottom": "15px"},
             ),
             dcc.RadioItems(
                 options=[
@@ -210,7 +262,7 @@ def run_app():
             ),
             dcc.Graph(figure={}, id="scatter"),
             html.Div([
-                html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
+                html.Img(src='/assets/banner.png', style={'width': '50%', 'height': 'auto'}),
             ], style={'textAlign': 'center', 'padding': '20px'}),
 
         ],
