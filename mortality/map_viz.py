@@ -167,7 +167,7 @@ def run_app():
                 },
             ),
             html.Hr(),
-            html.I(
+            html.P(
                 "Please select the map and data you would like to view",
                 style={"fontWeight": "bold", "marginBottom": "20px"},
             ),
@@ -176,7 +176,7 @@ def run_app():
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.H4("Note: missing mortality rate data for 13 states."),
+            html.I("Note: missing mortality rate data for 13 states.", style={ 'color': '#0000FF'}),
             # Map and table
             html.Div(
                 [
@@ -194,7 +194,7 @@ def run_app():
             ),
             # Scatter plot
             html.Hr(),
-            html.I(
+            html.P(
                 "Please select the x-axis you would like to visualize.",
                 style={"fontWeight": "bold", "marginBottom": "20px"},
             ),
