@@ -64,7 +64,7 @@ def extract_state_info(raw_data: list, variables: list, output_file: str):
         writer.writerows(data)
 
 
-def run_kff_scrapers(data_sources: dict):
+def run_kff_scrapers():
     """
     This function runs the web scraping functions on the data to be scraped.
 
@@ -73,9 +73,6 @@ def run_kff_scrapers(data_sources: dict):
             information needed to scrape all of the data sources.
     """
     # Unpack the important information for each data source to be scraped
-    for url, variables, start_index, output_file in data_sources.values():
+    for url, variables, start_index, output_file in DATA_SOURCES.values():
         info = get_json_from_html(url)
         extract_state_info(info["data"][start_index:], variables, output_file)
-
-
-run_kff_scrapers(DATA_SOURCES)

@@ -78,6 +78,3 @@ def run_abortion_policy_scraper():
         writer = csv.DictWriter(file, fieldnames=field_names)
         writer.writeheader()
         writer.writerows(state_data[:])
-
-
-run_abortion_policy_scraper()
