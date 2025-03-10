@@ -161,6 +161,7 @@ def run_app():
                 "Analysis of Maternal Mortality Rates and Abortion Legislation",
                 style={
                     "textAlign": "left",
+                    'fontFamily': 'Arial, sans-serif',
                     "fontSize": "32px",
                     "textDecoration": "underline",
                 },
@@ -175,7 +176,7 @@ def run_app():
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.H4("Note: missing mortality data from 13 states."),
+            html.H4("Note: missing mortality rate data for 13 states."),
             # Map and table
             html.Div(
                 [
