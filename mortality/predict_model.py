@@ -94,7 +94,7 @@ def user_input_dash():
         #first component (predictive model)
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
-        html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'textAlign': 'left', 'fontWeight': 'bold', 'marginBottom': '20px', 'color': '#5b33ff'}),
+        html.I("Please choose the following characteristics that most describe you. Please note that all options are based on CDC Wonder online database", style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'fontWeight': 'bold', 'marginBottom': '20px', 'color': '#5b33ff'}),
         html.Div([
             dcc.Dropdown(mortalty_data['region'].unique(), placeholder="Select State Region...", id='region'),
         ]),
@@ -105,10 +105,10 @@ def user_input_dash():
             dcc.Dropdown(mortalty_data['education'].unique(), placeholder="Select Education Level", id='education')
         ]),
         html.Div([
-            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age',style={'marginBottom': '20px'})
+            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age',style={'fontFamily': 'Arial, sans-serif', 'marginBottom': '20px'})
         ]),
 
-        html.Div(id='header-mortality', style={'textAlign': 'left', 'marginBottom': '20px', 'textDecoration': 'underline'}),
+        html.Div(id='header-mortality', style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
         
         html.Div(id='shadow_image', children=[
@@ -116,7 +116,7 @@ def user_input_dash():
     ], style={'textAlign': 'center', 'marginTop': '20px'}),
 
         #second component (visualization)
-        html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontSize': '32px', 'textDecoration': 'underline'}),
+        html.H2("How different charactersitics may correlated to Maternal Mortality?", style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'fontSize': '32px', 'textDecoration': 'underline'}),
         html.Div([
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var1'),
         ]),
