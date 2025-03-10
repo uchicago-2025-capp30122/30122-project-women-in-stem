@@ -208,9 +208,16 @@ def run_app():
                 id="scatter_select",
             ),
             dcc.Graph(figure={}, id="scatter"),
+            html.Div([
+                html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
+            ], style={'textAlign': 'center', 'padding': '20px'}),
+
         ],
-        style={"maxWidth": "1200px", "margin": "0 auto", "padding": "20px"},
-    )
+        style={
+        'background': 'linear-gradient(to right, #fabae2, #f0f8ff)',  # gradient background
+        'height': 'auto',  
+        'padding': '20px'
+    })
 
     @callback(  # updating map according to selection
         Output(component_id="map", component_property="figure"),
