@@ -161,12 +161,13 @@ def run_app():
                 "Analysis of Maternal Mortality Rates and Abortion Legislation",
                 style={
                     "textAlign": "left",
+                    'fontFamily': 'Arial, sans-serif',
                     "fontSize": "32px",
                     "textDecoration": "underline",
                 },
             ),
             html.Hr(),
-            html.I(
+            html.P(
                 "Please select the map and data you would like to view",
                 style={"fontWeight": "bold", "marginBottom": "20px"},
             ),
@@ -175,7 +176,7 @@ def run_app():
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.H4("Note: missing mortality data from 13 states."),
+            html.I("Note: missing mortality rate data for 13 states.", style={ 'color': '#0000FF'}),
             # Map and table
             html.Div(
                 [
@@ -193,7 +194,7 @@ def run_app():
             ),
             # Scatter plot
             html.Hr(),
-            html.I(
+            html.P(
                 "Please select the x-axis you would like to visualize.",
                 style={"fontWeight": "bold", "marginBottom": "20px"},
             ),
@@ -208,9 +209,16 @@ def run_app():
                 id="scatter_select",
             ),
             dcc.Graph(figure={}, id="scatter"),
+            html.Div([
+                html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
+            ], style={'textAlign': 'center', 'padding': '20px'}),
+
         ],
-        style={"maxWidth": "1200px", "margin": "0 auto", "padding": "20px"},
-    )
+        style={
+        'background': 'linear-gradient(to right, #fabae2, #f0f8ff)',  # gradient background
+        'height': 'auto',  
+        'padding': '20px'
+    })
 
     @callback(  # updating map according to selection
         Output(component_id="map", component_property="figure"),
