@@ -19,15 +19,15 @@ def load_data(file, abortion):
 
     if abortion:  # if we're passing the abortion csv
         df = df[["Location", "Abbreviation", "Statutory Limit on Abortions"]]
-        sort_order = [
-            "Abortion banned",
+        sort_order = [  # order from least restrictive to most restrictive
             "Fetal viability",
-            "6 weeks LMP",
-            "12 weeks LMP",
-            "18 weeks LMP",
-            "22 weeks LMP",
-            "24 weeks LMP",
             "3rd trimester",
+            "24 weeks LMP",
+            "22 weeks LMP",
+            "18 weeks LMP",
+            "12 weeks LMP",
+            "6 weeks LMP",
+            "Abortion banned",
         ]
 
         df["sort_order"] = df["Statutory Limit on Abortions"].apply(
@@ -65,12 +65,12 @@ def map_mortalities():
         scope="usa",
         color="Maternal Mortality Rate per 100,000 Live Births",
         custom_data=["State", "Maternal Mortality Rate per 100,000 Live Births"],
-        color_continuous_scale=px.colors.sequential.YlOrBr,
+        color_continuous_scale=px.colors.sequential.PuRd,
         title="Maternal Mortality Rate per 100,000 Live Births by State (2018-2021)",
         data_frame=df,
     )
 
-    fig.update_traces(
+    fig.update_traces(  # custom tooltip
         hovertemplate="<b>State:</b> %{customdata[0]}<br><b>Maternal Mortality Rate per 100,000 Live Births:</b> %{customdata[1]}<extra></extra>"
     )
 
@@ -103,15 +103,15 @@ def map_abortion_laws():
         scope="usa",
         color="Statutory Limit on Abortions",
         custom_data=["Location", "Statutory Limit on Abortions"],
-        color_discrete_sequence=[
-            "#D95319",
-            "#F2801E",
-            "#A3D0F2",
-            "#5AB4F2",
-            "#3A9BE0",
-            "#1E69D2",
-            "#0045A2",
-            "#001A70",
+        color_discrete_sequence=[  # pink to dark purple
+            "#FFC0CB",
+            "#F89AC1",
+            "#F472B6",
+            "#E847AE",
+            "#C44EC1",
+            "#9D41C9",
+            "#732D91",
+            "#4B0082",
         ],
         title="Statutory limit on abortions by state",
         data_frame=df,
@@ -143,7 +143,7 @@ def scatter_mortality_stats(xaxis):
         data_frame=df,
     )
 
-    fig.update_traces(marker=dict(size=10))
+    fig.update_traces(marker=dict(size=10))  # make markers bigger
 
     return fig
 
@@ -156,27 +156,87 @@ def run_app():
     app = Dash()
     app.layout = html.Div(
         [
+            # header
+            html.Div(
+                style={"position": "relative", "textAlign": "center"},
+                children=[
+                    # Background image
+                    html.Img(
+                        src="assets/banner_multiple.png",
+                        style={"width": "100%", "height": "auto"},
+                    ),
+                    # Left text
+                    html.H3(
+                        [
+                            "Women in STEM",
+                            html.Br(),
+                            "CAPP 30122 Project",
+                            html.Br(),
+                            "Winter 2025",
+                        ],
+                        style={
+                            "position": "absolute",
+                            "top": "5%",
+                            "left": "5%",
+                            "color": "black",
+                            "textAlign": "left",
+                            "fontFamily": "Arial, sans-serif",
+                        },
+                    ),
+                    # Right text
+                    html.H3(
+                        [
+                            "Click below to see the",
+                            html.Br(),
+                            html.A(
+                                "GitHub repository",
+                                href="https://github.com/uchicago-2025-capp30122/30122-project-women-in-stem",
+                                target="_blank",
+                            ),
+                        ],
+                        style={
+                            "position": "absolute",
+                            "top": "5%",
+                            "right": "5%",
+                            "color": "black",
+                            "fontFamily": "Arial, sans-serif",
+                        },
+                    ),
+                ],
+            ),
             # Heading, selectors
             html.H1(
                 "Analysis of Maternal Mortality Rates and Abortion Legislation",
                 style={
-                    "textAlign": "left",
-                    'fontFamily': 'Arial, sans-serif',
+                    "textAlign": "center",
+                    "fontFamily": "Arial, sans-serif",
                     "fontSize": "32px",
                     "textDecoration": "underline",
                 },
             ),
-            html.Hr(),
             html.P(
                 "Please select the map and data you would like to view",
-                style={"fontWeight": "bold", "marginBottom": "20px"},
+                style={
+                    "fontWeight": "bold",
+                    "marginBottom": "15px",
+                    "fontFamily": "Arial, sans-serif",
+                },
             ),
             dcc.RadioItems(
                 options=["Maternal Mortality Rates", "Statutory Limits on Abortion"],
                 value="Maternal Mortality Rates",
                 id="map_select",
             ),
-            html.I("Note: missing mortality rate data for 13 states.", style={ 'fontFamily': 'Arial, sans-serif', 'color': '#0000FF'}),
+            html.I(
+                "Note: missing mortality rate data for 13 states",
+                style={
+                    "fontFamily": "Arial, sans-serif",
+                    "color": "gray",
+                    "fontSize": "13px",
+                    "marginBottom": "20px",
+                    "marginTop": "10px",
+                },
+            ),
             # Map and table
             html.Div(
                 [
@@ -188,6 +248,7 @@ def run_app():
                         page_size=10,
                         id="table",
                         style_table={"flex": "1", "overflowX": "auto"},
+                        style_cell={"textAlign": "center"},
                     ),
                 ],
                 style={"maxWidth": "1200px", "display": "flex", "gap": "20px"},
@@ -196,7 +257,11 @@ def run_app():
             html.Hr(),
             html.P(
                 "Please select the x-axis you would like to visualize.",
-                style={"fontWeight": "bold", 'fontFamily': 'Arial, sans-serif', "marginBottom": "20px"},
+                style={
+                    "fontWeight": "bold",
+                    "fontFamily": "Arial, sans-serif",
+                    "marginBottom": "15px",
+                },
             ),
             dcc.RadioItems(
                 options=[
@@ -209,16 +274,23 @@ def run_app():
                 id="scatter_select",
             ),
             dcc.Graph(figure={}, id="scatter"),
-            html.Div([
-                html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
-            ], style={'textAlign': 'center', 'padding': '20px'}),
-
+            html.I(
+                "Note: mortality data is from 2018-2021, while earnings data and cesarean data is for the year 2021 and insurance coverage data 2023.",
+                style={
+                    "fontFamily": "Arial, sans-serif",
+                    "color": "gray",
+                    "fontSize": "13px",
+                    "marginBottom": "20px",
+                    "marginTop": "10px",
+                },
+            ),
         ],
         style={
-        'background': 'linear-gradient(to right, #fabae2, #f0f8ff)',  # gradient background
-        'height': 'auto',  
-        'padding': '20px'
-    })
+            "background": "linear-gradient(to right, #fabae2, #f0f8ff)",  # gradient background
+            "height": "auto",
+            "padding": "20px",
+        },
+    )
 
     @callback(  # updating map according to selection
         Output(component_id="map", component_property="figure"),

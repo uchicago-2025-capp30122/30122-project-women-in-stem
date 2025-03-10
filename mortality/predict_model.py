@@ -104,6 +104,7 @@ def user_input_dash():
 
     app.layout = html.Div(
         [
+            # header
             html.Div(
                 style={"position": "relative", "textAlign": "center"},
                 children=[
