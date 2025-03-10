@@ -92,6 +92,9 @@ def user_input_dash():
 
     app.layout = html.Div([
 
+        html.Div([
+            html.Img(src='/assets/banner.png', style={'width': '100%', 'height': '150px', 'width': '150px'}),
+        ], style={'textAlign': 'center', 'padding': '20px'}), 
         #first component (predictive model)
         html.H1("Predictive Model of Maternal Mortality Rate on State Region, Race, Education, and Age (ten-year based)", style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'fontSize': '32px', 'textDecoration': 'underline'}),
 
@@ -122,16 +125,12 @@ def user_input_dash():
             dcc.Dropdown(INDEPENDENT_VAR, placeholder="Select Variable of Interest", id='indepdent-var2'),
         ]),
 
-        dcc.Graph(id='boxplot'),
-
-         html.Div([
-            html.Img(src='/assets/banner.png', style={'width': '100%', 'height': 'auto'}),
-        ], style={'textAlign': 'center', 'padding': '20px'}),
+        dcc.Graph(id='boxplot')
 
     ], style={
         'background': 'linear-gradient(to right, #fabae2, #f0f8ff)',  # gradient background
         'height': 'auto',  
-        'padding': '20px'
+        'padding': '7px'
     })
 
     #create the predicted mortality rate based on user inputs
