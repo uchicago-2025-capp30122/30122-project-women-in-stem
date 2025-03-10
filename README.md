@@ -6,15 +6,11 @@
 - [Madelin De Jesus Martinez](https://github.com/madelindejesus)
 - [Alexandrea Harriott](https://github.com/a-harriott)
 
-# Summary
+# Abstract
 
-Our research question is as follows: 
-- How does race/ethnicity, income, poverty, and other demographics affect outcomes for pregnant people in the United States? 
-- How do abortion laws affect outcomes for pregnant people, and how will policy changes impact these outcomes? 
+This project investigates maternal mortality across the United States, producing key insights of maternal mortality risk at an individual-level, and examining its correlation with state-specific characteristics. This project has two components. The first is a python program that utilizes regression analysis to look at the association between someone’s region, race, age, and education level and their maternal mortality risk. Along with this, the user can explore other combinations of these factors to compare their own risk with another group’s. The second component is data visualization of state-level summary statistics of characteristics that may impact maternal mortality, like abortion policies, insurance coverage, demographic factors, and insurance coverage. By analyzing individual-level factors, possible patterns and disparities in maternal health outcomes can be drawn from analysis output, and at the state-level, the influence of policy decisions and the social determinants of health can be better understood.
+As a note, our datasets include information on those identified as women. We recognize that this analysis extends to anyone assigned female at birth, including trans men and nonbinary people who experience pregnancy.
 
-We want to explore data at a state level to analyze maternal mortality across the US, exploring related characteristics from the KFF (and CDC Wonder) and NY Times. We plan to create an interactive map visualization that will show summary statistics for different states exploring maternal mortality with associated characteritics.
-
-Additionally, we plan to create a background regression model where we see the effect of interested characteristics on maternal mortality rate. The user wil be able to put their own demographics into a python program, and it will show the predicted maternal mortality rate using the regression model output. This can be helpful for the user to consider their current situation in their state or another state with varying access levels to abortion.
 
 # How to Run the Appplication
 
@@ -22,13 +18,19 @@ Additionally, we plan to create a background regression model where we see the e
 
 `git clone git@github.com:uchicago-2025-capp30122/30122-project-women-in-stem.git`
 
-2. Downlaod necessary pacakges for running the program:
+or 
+
+`git clone https://github.com/uchicago-2025-capp30122/30122-project-women-in-stem.git`
+
+2. Go into the repositry Downlaod necessary pacakges for running the program:
+
+`cd 30122-project-women-in-stem.git`
 
 `uv sync`
 
 3. Run the scrapers to get the data (optional): 
 
-`uv run python -m mortality.scrapers`
+`uv run python -m mortality scrape`
 
 4. To execute the program choose one of the following:
 
@@ -39,9 +41,9 @@ Additionally, we plan to create a background regression model where we see the e
 Please follow the prompts once the program starts.
 
 # Data Source
-[2024 State Scorecard on Women’s Health and Reproductive Care](https://www.commonwealthfund.org/publications/scorecard/2024/jul/2024-state-scorecard-womens-health-and-reproductive-care)
+[CDC Wonder](https://wonder.cdc.gov/)
 
-[KFF State Profiles for Women’s Health](https://www.kff.org/interactive/womens-health-profiles/alaska/demographics/)
+[Kaiser Family Foundation](https://www.kff.org/interactive/womens-health-profiles/united-states/maternal-infant-health/)
 
 For both of these sources, the necessary data has been loaded into the program for you already. There are no extra steps necessary in order to use the program.
 
