@@ -60,7 +60,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     mortality_data = get_data()
 
     full_logit_model, _ = full_model(mortality_data)
-    # print(full_logit_model.summary())
+    print(full_logit_model.summary())
 
     inputs = pd.DataFrame({
         INDEPENDENT_VAR[0] : [region],
@@ -71,6 +71,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     
     user_mortality_r = full_logit_model.predict(inputs)
 
+    # return user_mortality_r.values[0]
     return round(user_mortality_r.values[0], 3)
 
 def user_input_dash():
@@ -110,6 +111,7 @@ def user_input_dash():
 
         html.Div(id='header-mortality', style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'marginBottom': '20px', 'textDecoration': 'underline'}),
         html.Div(id='output-mortality', style={'marginBottom': '20px'}),
+        html.Div(id='explain-mortality', style={'marginBottom': '20px'}),
         
         html.Div(id='shadow_image', children=[
         html.Img(src='/assets/crazy calculator.gif', style={'width': '20%', 'height': 'auto'})
@@ -140,6 +142,7 @@ def user_input_dash():
     @callback(
         Output(component_id = 'header-mortality', component_property = 'children'),
         Output(component_id = 'output-mortality', component_property = 'children'),
+        Output(component_id = 'explain-mortality', component_property = 'children'),
         [Input(component_id='region', component_property = 'value'),
         Input(component_id='race', component_property = 'value'),
         Input(component_id='education', component_property = 'value'),
@@ -148,13 +151,10 @@ def user_input_dash():
 
     def output_mortality_rate(region, race, education, age):
         if  None in [region, race, education, age]:
-            return "", ""
+            return "", "", ""
         predicted_result = user_prediction(region, race, education, age)
-
-        if pd.isna(predicted_result):
-            predicted_value = "..."
-        else:
-            return "The prediction analysis", f"Based on the given characteristics, your predicted maternal mortality is {predicted_result}"
+        explanation = f"ALEX PARAGRAPH "
+        return "The prediction analysis", f"Based on the given characteristics, your predicted value is {predicted_result}", explanation
 
     #create data expldoration visulization based on user inputs
     @callback(
