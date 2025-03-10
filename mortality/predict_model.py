@@ -109,7 +109,7 @@ def user_input_dash():
             dcc.Dropdown(mortalty_data['education'].unique(), placeholder="Select Education Level", id='education')
         ]),
         html.Div([
-            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age',style={'fontFamily': 'Arial, sans-serif', 'marginBottom': '20px'})
+            dcc.Dropdown(sorted(mortalty_data['ten_year_age_groups'].unique()), placeholder="Select Age Group", id='age')
         ]),
 
         html.Div(id='header-mortality', style={'textAlign': 'left', 'fontFamily': 'Arial, sans-serif', 'marginBottom': '20px', 'textDecoration': 'underline'}),
