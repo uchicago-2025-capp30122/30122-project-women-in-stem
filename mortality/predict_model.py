@@ -60,7 +60,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     mortality_data = get_data()
 
     full_logit_model, _ = full_model(mortality_data)
-    print(full_logit_model.summary())
+    # print(full_logit_model.summary())
 
     inputs = pd.DataFrame({
         INDEPENDENT_VAR[0] : [region],
@@ -71,7 +71,7 @@ def user_prediction(region:str = 'northeast', race:str = 'white', education:str 
     
     user_mortality_r = full_logit_model.predict(inputs)
 
-    return user_mortality_r.values[0]
+    return round(user_mortality_r.values[0], 3)
 
 def user_input_dash():
     """
