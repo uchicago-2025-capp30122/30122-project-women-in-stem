@@ -22,7 +22,7 @@ or
 
 `git clone https://github.com/uchicago-2025-capp30122/30122-project-women-in-stem.git`
 
-2. Go into the repositry Downlaod necessary pacakges for running the program:
+2. Go into the repository, downlaod necessary pacakges for running the program:
 
 `cd 30122-project-women-in-stem.git`
 

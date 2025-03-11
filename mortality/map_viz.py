@@ -2,6 +2,7 @@ import pandas as pd
 from pathlib import Path
 import plotly.express as px
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
+import statsmodels.api as sm
 
 MERGED = Path(__file__).parent.parent.joinpath("data/merged_kff.csv")
 ABORTION_LAWS = Path(__file__).parent.parent.joinpath("data/scrape_data/abortion.csv")
@@ -46,6 +47,8 @@ def load_data(file, abortion):
             "Percent Cesarean Births",
             "Abbreviation",
         ]
+
+        df[['Percent Uninsured']] = df[['Percent Uninsured']].astype(float)
 
     return df
 
@@ -134,13 +137,24 @@ def scatter_mortality_stats(xaxis):
     """
 
     df = load_data(MERGED, False).dropna()
+    df[xaxis] = df[xaxis].astype(float)
+
+    # manually creating trend line with statsmodel package
+    model = sm.OLS(df["Maternal Mortality Rate per 100,000 Live Births"], 
+                   sm.add_constant(df[xaxis])).fit()
+    
+    df["trend"] = model.predict(sm.add_constant(df[xaxis]))
 
     fig = px.scatter(
+        data_frame=df,
         x=xaxis,
         y="Maternal Mortality Rate per 100,000 Live Births",
         color="State",
         title=f"Maternal Mortality by {xaxis}",
-        data_frame=df,
+    )
+
+    fig.add_traces(
+        px.line(df, x=xaxis, y="trend").data[0] # adding trend line
     )
 
     fig.update_traces(marker=dict(size=10))  # make markers bigger
