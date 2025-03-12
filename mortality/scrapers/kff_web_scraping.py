@@ -27,18 +27,38 @@ def get_json_from_html(url: str) -> dict:
     return json_dict
 
 
-def extract_state_info(raw_data: list, variables: list, output_file: str):
+def write_to_csv(data: dict, fieldnames: list, output_file: str):
     """
-    This function parses a list of lists containing state data and writes the
-    important information to a csv. Note that the length of the variables must
-    match the length of each list containing state information. This function is
-    meant to be used with the KFF data contained in kff_data_sources.py.
+    This function writes data to a csv given a list of dictionaries and the
+    fieldnames for the name of the csv.
+
+    Parameters:
+        data: a list of dictionaries for the data to be written to csv
+        fieldnames: a list of the column names in the csv
+        output_file: the path and filename to where the data should be saved.
+    
+    Returns:
+        None, the information gets written to a file.
+    """
+    # Write the list of dictionaries to a csv
+    with open(BASE_DIR / output_file, "w") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(data)
+
+
+def extract_state_info(raw_data: list, variables: list):
+    """
+    This function parses a list of lists containing state data and creates a 
+    list of dictionaries, which will later be written to a csv. Note that the 
+    length of the variables must match the length of each list containing state
+    information. This function is meant to be used with the KFF data contained 
+    in kff_data_sources.py.
 
     Parameters:
         raw_data: a list of lists containing state data.
         variables: a list of variable names, corresponding to the number of
             fields within each row of state data.
-        output_file: the path and filename to where the data should be saved.
 
     Returns:
         None, the information gets written to a file.
@@ -57,11 +77,7 @@ def extract_state_info(raw_data: list, variables: list, output_file: str):
         # Add dictionary with state info into data list
         data.append(row)
 
-    # Write the list of dictionaries to a csv
-    with open(BASE_DIR / output_file, "w") as file:
-        writer = csv.DictWriter(file, fieldnames=variables)
-        writer.writeheader()
-        writer.writerows(data)
+    return data
 
 
 def run_kff_scrapers():
@@ -75,4 +91,5 @@ def run_kff_scrapers():
     # Unpack the important information for each data source to be scraped
     for url, variables, start_index, output_file in DATA_SOURCES.values():
         info = get_json_from_html(url)
-        extract_state_info(info["data"][start_index:], variables, output_file)
+        data = extract_state_info(info["data"][start_index:], variables)
+        write_to_csv(data, variables, output_file)
