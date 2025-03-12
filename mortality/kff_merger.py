@@ -2,7 +2,7 @@ from pathlib import Path
 from mortality.utils import STATE_ABBREVIATIONS
 import pandas as pd
 
-'''In this file, we are using the scraped data from the KFF website, and we are 
+"""In this file, we are using the scraped data from the KFF website, and we are 
 merging a few columns for our map. 
 
 This merge uses the state column as the unique identifier, to ensure that we are
@@ -10,7 +10,7 @@ matching the data correctly, across csv files.
 
 During the merge, a few cleaning steps were taking, to ensure the data is legible
 and consisten when presented in the map. 
-'''
+"""
 
 # paths to the files we are merging
 maternal_mortality_path = Path(__file__).parent.parent.joinpath(
@@ -55,15 +55,17 @@ coverage["Uninsured"] = (
 )  # Convert Uninsured to decimal
 
 # cleaning files: cesarean
-cesarean['cesarean'] = (
-    cesarean['cesarean'].astype(str).str.rstrip('%').astype(float) / 100
-) # Convert cesarean to decimal
+cesarean["cesarean"] = (
+    cesarean["cesarean"].astype(str).str.rstrip("%").astype(float) / 100
+)  # Convert cesarean to decimal
 
 # cleaning files: mortality
-mortality['Maternal Mortality Rate per 100,000 live Births'] = mortality["Maternal Mortality Rate per 100,000 live Births"].apply(
-    lambda x: None if x == "NR" else x
-)
-mortality['Maternal Mortality Rate per 100,000 live Births'] = mortality["Maternal Mortality Rate per 100,000 live Births"].astype(float)
+mortality["Maternal Mortality Rate per 100,000 live Births"] = mortality[
+    "Maternal Mortality Rate per 100,000 live Births"
+].apply(lambda x: None if x == "NR" else x)
+mortality["Maternal Mortality Rate per 100,000 live Births"] = mortality[
+    "Maternal Mortality Rate per 100,000 live Births"
+].astype(float)
 
 # extracting specific columns
 mortality = mortality[["state", "Maternal Mortality Rate per 100,000 live Births"]]
@@ -82,11 +84,19 @@ merged_df = (
 merged_df["state_abbreviation"] = merged_df["state"].map(STATE_ABBREVIATIONS)
 
 # removing DC and United States rows
-merged_df = merged_df[merged_df['state'] != 'United States']
-merged_df = merged_df[merged_df['state'] != 'District of Columbia']
+merged_df = merged_df[merged_df["state"] != "United States"]
+merged_df = merged_df[merged_df["state"] != "District of Columbia"]
 
 # change column names
-merged_df.columns = ['state', 'mortality', 'uninsured', 'women_earnings', 'ratio_earnings', 'cesarean', 'abbrev']
+merged_df.columns = [
+    "state",
+    "mortality",
+    "uninsured",
+    "women_earnings",
+    "ratio_earnings",
+    "cesarean",
+    "abbrev",
+]
 
 # saving the merged data
 merged_df.to_csv(merged_kff, index=False)
